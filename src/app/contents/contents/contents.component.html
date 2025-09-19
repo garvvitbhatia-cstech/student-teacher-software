@@ -1,0 +1,91 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Contents</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="back-search">
+
+                                <input type="text" id="title" placeholder="Search Content" class="form-control filter_input" >
+
+                                 <select class="form-control filter_input" id="class">
+                                    <option value="">Select Class</option>
+                                    <option *ngFor="let class of classes" value="{{ class.id }}">{{ class.title }}</option>
+                                  </select>
+
+                                  <select class="form-control filter_input" id="subject">
+                                    <option value="">Select Subject</option>
+                                    <option *ngFor="let subject of subjects" value="{{ subject.id }}">{{ subject.title }}</option>
+                                  </select>
+                                <a (click)="searchData()" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-left:10px;" class="btn btn-info">Reset</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            <div class="btn-group right-btn">
+                                <a routerLink="/add-content" class="btn btn-info">Add Content</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S No.</th>
+                                            <th width="130px">Class</th>
+                                            <th width="230px">Subject</th>
+                                            <th width="230px">Title</th>
+                                            <th width="72px">Status</th>
+                                            <th width="153px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let content of contents | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ i+1 }}.</td>
+                                            <td>{{ content?.class }}</td>
+                                            <td>{{ content?.subject }}</td>
+                                            <td>{{ content?.title }}</td>
+                                            <td>
+                                                <a style="cursor:pointer" (click)="updateStatus(content.id,'2')" *ngIf="content.status == 1" class="btn-round active"><img src="assets/images/right-tick.png"></a>
+                                                <a style="cursor:pointer" (click)="updateStatus(content.id,'1')" *ngIf="content.status == 2" class="btn-round"><img src="assets/images/cross-icon.png"></a>
+                                            </td>
+                                            <td>
+                                                <a [routerLink]="['/edit-content/', content.id  ]" class="action-btn"><span><img src="assets/images/edit-icon.png"></span></a>
+                                                <a style="cursor:pointer" (click)="deleteRecord(content.id)" class="action-btn"><span><img src="assets/images/delete-icon.png"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<app-footer></app-footer>

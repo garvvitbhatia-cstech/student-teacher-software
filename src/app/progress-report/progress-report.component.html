@@ -1,0 +1,229 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+  <app-sidebar></app-sidebar>
+  
+  <section *ngIf="login_user_type=='Admin'" class="inner-wrapper">
+    <div class="col-sm-12">
+      <div class="panel panel-default adminst-des">
+        <div class="panel-body">
+          <div class="row" style="margin-bottom:10px;">
+            <div class="col-sm-3">
+              <select id="f_data_city" (change)="getReport()" class="form-control">
+                <option value="">Select City</option>
+                <option *ngFor="let franchise of franchises" value="{{franchise.id}}">{{franchise.title}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="table-responsive widthFixed">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Heads</th>
+                            <th>For the Day</th>
+                            <th>For the Month</th>
+                            <th>Gross Total</th>
+                            <th>Doc Done</th>
+                            <th>Pending For Docs</th>
+                            <th>Done(%)</th>
+                            <th>Pending(%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                      <td>CRM Interviews</td>
+                      <td>{{today_total_telecaller}}</td>
+                      <td>{{month_total_telecaller}}</td>
+                      <td>{{total_interviews}}</td>
+                      <td>{{firstDocDone}}</td>
+                      <td>{{total_interviews-firstDocDone}}</td>
+                      <td>{{(100-done_interview).toFixed(2)}}</td>
+                      <td>{{done_interview}}</td>
+                      </tr>
+                      <tr>
+                        <td>OLD Interviews</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>404</td>
+                        <td>{{old_interview_doc_done}}</td>
+                        <td>{{old_interview_doc_pending}}</td>
+                        <td>{{((old_interview_doc_done/404)*100).toFixed(2)}}</td>
+                        <td>{{((old_interview_doc_pending/404)*100).toFixed(2)}}</td>
+                      </tr>
+                        <tr>
+                          <td>Total Interviews</td>
+                          <td>{{today_total_telecaller}}</td>
+                          <td>{{month_total_telecaller}}</td>
+                          <td>{{grand_total_interviews}}</td>
+                          <td>{{totalDoneInterview}}</td>
+                          <td>{{totalPendingInterview}}</td>
+
+                          <td>{{((totalDoneInterview/grand_total_interviews)*100).toFixed(2)}}</td>
+                          <td>{{((totalPendingInterview/grand_total_interviews)*100).toFixed(2)}}</td>
+                        </tr>
+                        <tr>
+                          <td>Total Appointments</td>
+                          <td>{{today_total_appointments}}</td>
+                          <td>{{month_total_appointments}}</td>
+                          <td>{{total_appointments}}</td>
+                          <td>{{total_appointments-pending_appointment}}</td>
+                          <td>{{pending_appointment}}</td>
+                          <td>{{(100-(pending_appointment/total_appointments)*100).toFixed(2)}}</td>
+                          <td>{{((pending_appointment/total_appointments)*100).toFixed(2)}}</td>
+                        </tr>
+                        <tr>
+                          <td>Total Documentations (online) </td>
+                          <td>{{today_total_doc_unverify}}</td>
+                          <td>{{month_total_doc_unverify}}</td>
+                          <td>{{total_doc_unverify}}</td>
+                          <td>--</td>
+                          <td>--</td>
+                          <td>--</td>
+                          <td>--</td>
+                        </tr>
+                        <tr>
+                          <td>Total Documentations Singed </td>
+                          <td>{{today_total_doc_verify}}</td>
+                          <td>{{month_total_doc_verify}}</td>
+                          <td>{{total_doc_verify}}</td>
+                          <td>--</td>
+                          <td>--</td>
+                          <td>--</td>
+                          <td>--</td>
+                        </tr>
+                        <tr>
+                          <td>Documentations Online + Signed</td>
+                          <td>{{today_total_docs}}</td>
+                          <td>{{month_total_docs}}</td>
+                          <td>{{total_docs}}</td>
+                          <td>--</td>
+                          <td>--</td>
+                          <td>--</td>
+                          <td>--</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm-6" >
+              <div class="table-responsive widthFixed">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Interviewer</th>
+                            <th>Count({{totalTodayInterviewCount}})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let interviewer of interviewer_pivotes; let i = index">
+                      <td>{{interviewer.name}} <img *ngIf="i==0" src="assets/images/crown.png" /></td>
+                      <td>{{interviewer.total_count}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="table-responsive widthFixed">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Telecaller</th>
+                            <th>Count({{totalTodayTelecallingCount}})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let telecaller of telecaller_pivotes; let i = index">
+                      <td>{{telecaller.name}} <img *ngIf="i==0" src="assets/images/crown.png" /></td>
+                      <td>{{telecaller.total_count}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            
+            <!-- <div class="col-sm-6">
+              <div class="table-responsive widthFixed">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Total</th>
+                            <th>Doc Done</th>
+                            <th>Conversion (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let telecaller of telecaller_all_pivotes; let i = index">
+                      <td>{{telecaller.name}} <img *ngIf="i==0" src="assets/images/crown.png" /></td>
+                      <td>{{telecaller.total_count}}</td>
+                      <td>{{telecaller.convert}}</td>
+                      <td>{{(telecaller.percent).toFixed(2)}}%</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div> -->
+          </div><br>
+          <div class="row">
+            
+            <div class="col-sm-6">
+              <div class="table-responsive widthFixed">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Interviewer</th>
+                            <th>Total</th>
+                            <th>Doc Done</th>
+                            <th>Conversion (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let interviewer of interviewer_all_pivotes; let i = index">
+                      <td>{{interviewer.name}} <img *ngIf="i==0" src="assets/images/crown.png" /></td>
+                      <td>{{interviewer.total_count}}</td>
+                      <td>{{interviewer.convert}}</td>
+                      <td>{{(interviewer.percent).toFixed(2)}}%</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <!-- <div class="col-sm-6">
+              <div class="table-responsive widthFixed">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Total</th>
+                            <th>Doc Done</th>
+                            <th>Conversion (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let telecaller of telecaller_all_pivotes; let i = index">
+                      <td>{{telecaller.name}} <img *ngIf="i==0" src="assets/images/crown.png" /></td>
+                      <td>{{telecaller.total_count}}</td>
+                      <td>{{telecaller.convert}}</td>
+                      <td>{{(telecaller.percent).toFixed(2)}}%</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div> -->
+          </div>
+          </div>
+          
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>
+
+<!-- Logout confirmation -->
+

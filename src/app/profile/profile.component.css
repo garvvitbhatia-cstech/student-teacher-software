@@ -1,0 +1,11 @@
+.disabled_input{
+    background-color: #e1e1e1;
+    border-color: #666;
+    height: 44px;
+    box-shadow: none;
+    padding: 8px 15px;
+    font-size: 15px;
+    color: #666;
+    border: 1px solid;
+    width: 63%;margin-right: 10px;
+}

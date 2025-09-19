@@ -1,0 +1,21 @@
+<div class="login_image" style="background-image:url(assets/images/login-banner.jpg);">
+    <div class="login_detail">
+        <div class="login_in_detail">
+            <!--<div class="head-logo"><a href="#"><img src="assets/images/login-logo.png" alt=""></a></div>-->
+            <h1>Administrative Login</h1>
+            <form  [formGroup]="form" (ngSubmit)="LoginNow(form.value)" class="form_field">
+                <input type="text" formControlName="email" id="email" placeholder="Username" class="form-control">
+                <input type="password" formControlName="password" id="password" placeholder="Password" class="form-control">
+                <button type="submit" id="loginBtn" class="login-btn">Login</button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        
+                    </div>
+                    <div class="col-sm-6">
+                        <p><a routerLink="/forgot-password">Forgot Password?</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

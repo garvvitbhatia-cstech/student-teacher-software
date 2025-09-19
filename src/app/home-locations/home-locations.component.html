@@ -1,0 +1,152 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Home Locations</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="back-search">
+                                <input type="text" id="titles" placeholder="Search By Title" class="form-control filter_input" >
+                                <a (click)="searchData()" style="margin-right:10px;" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-right:10px;" class="btn btn-info">Reset</a>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">DB ID</th>
+                                            <th width="283px">Teacher name</th>
+                                            <th width="283px">Latitude</th>
+                                            <th width="283px">Longitude</th>
+                                            <th width="283px">Image</th>
+                                            <th width="72px">Status</th>
+                                            <th width="72px">Date</th>
+                                            <th width="153px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let state of states | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ state?.id }}</td>
+                                            <td align="center"><a data-toggle="modal" data-target="#basicModal" (click)="setData(state?.teacher_data)">{{ state?.teacher_data.name }}</a></td>
+                                            <td align="center">{{ state?.latitude }}</td>
+                                            <td align="center">{{ state?.longitude }}</td>
+                                            <td><a target="_blank" href="{{ state?.banner }}"><img src="{{ state?.banner }}" width="100"></a></td>
+                                            <td>
+                                                <a style="cursor:pointer" (click)="updateStatus(state.id,'2')" *ngIf="state.status == 1" class="btn-round active"><img src="assets/images/right-tick.png"></a>
+                                                <a style="cursor:pointer" (click)="updateStatus(state.id,'1')" *ngIf="state.status == 2" class="btn-round"><img src="assets/images/cross-icon.png"></a>
+                                            </td>
+                                            <td>{{ state?.created_at }}</td>
+                                            <td>
+                                                <a style="cursor:pointer" (click)="deleteUser(state.id)" class="action-btn"><span><img src="assets/images/delete-icon.png"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">{{teacherData?.name}} ({{teacherData?.rating}} Rating)</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <img src="{{teacherData?.profile_image}}" width="100">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Subject:</b> {{teacherData?.subject}}<br><br>
+                        <b>Class:</b> {{teacherData?.class}}<br><br>
+                        <b>Board:</b> {{teacherData?.board}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Email:</b> {{teacherData?.email}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Phone:</b> {{teacherData?.phone}}
+                    </div>
+                    
+                    <div class="col-sm-12 form-group">
+                        <b>Address:</b> {{teacherData?.address}}, {{teacherData?.zipcode}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>City:</b> {{teacherData?.city}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Gender:</b> {{teacherData?.gender}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Qualification:</b> {{teacherData?.qualification}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Experience:</b> {{teacherData?.teaching_exp}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Aadhar No:</b> {{teacherData?.aadhar_no}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>PAN No:</b> {{teacherData?.pan_no}}
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <b>Preferred Area 1:</b> {{teacherData?.prefered_location}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_2" class="col-sm-12 form-group">
+                        <b>Preferred Area 2:</b> {{teacherData?.prefered_location_2}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_3" class="col-sm-12 form-group">
+                        <b>Preferred Area 3:</b> {{teacherData?.prefered_location_3}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_4" class="col-sm-12 form-group">
+                        <b>Preferred Area 4:</b> {{teacherData?.prefered_location_4}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_5" class="col-sm-12 form-group">
+                        <b>Preferred Area 5:</b> {{teacherData?.prefered_location_5}}
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+</main>
+
+<app-footer></app-footer>

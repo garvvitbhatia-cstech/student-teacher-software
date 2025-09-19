@@ -1,0 +1,93 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Contact Support</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="back-search">
+                                <input type="text" id="f_token" placeholder="Search By Token" class="form-control filter_input" >
+                                <input type="text" id="f_name" placeholder="Search By Name" class="form-control filter_input" >
+                                <input type="text" id="f_email" placeholder="Search By Email" class="form-control filter_input" >
+                                <input type="text" id="f_phone" placeholder="Search By Phone" class="form-control filter_input" >
+                                <a (click)="searchData()" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-left:10px;" class="btn btn-info">Reset</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            <div class="btn-group right-btn">
+                                <!-- <a routerLink="/add-board" class="btn btn-info">Add Board</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S No.</th>
+                                            <th width="283px">Token</th>
+                                            <th width="283px">Type</th>
+                                            <th width="283px">User Details</th>
+                                            <th width="283px">Subjects</th>
+                                            <th width="283px">Message</th>
+                                            <th width="283px">Created</th>
+                                             <th width="72px">Ticket</th>
+                                            <th width="153px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let board of boards | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ i+1 }}.</td>
+                                            <td><a style="color:blue" [routerLink]="['/view-contact-support/', board.id  ]" >{{ board?.token }}</a></td>
+                                            <td>{{ board?.type }}</td>
+                                            <td>
+                                                <b>Name:</b> {{ board?.name }}<br>
+                                                <b>Email:</b> {{ board?.email }}<br>
+                                                <b>Contact:</b> {{ board?.phone }}<br>
+                                            </td>
+                                            <td>{{ board?.subject }}</td>
+                                            <td>{{ board?.message }}</td>
+                                            <td>{{ board?.created_at }}</td>
+                                            <td>
+                                                <a (click)="updateStatus(board.id,'1')" *ngIf="board.status == 2" class="success_tag">Open</a>
+                                                <a (click)="updateStatus(board.id,'2')" *ngIf="board.status == 1" class="cancel_tag">Close</a>
+                                            </td> 
+                                            <td>
+                                                <!-- <a [routerLink]="['/edit-board/', board.id  ]" class="action-btn"><span><img src="assets/images/edit-icon.png"></span></a> -->
+                                                <a style="cursor:pointer" (click)="deleteUser(board.id)" class="action-btn"><span><img src="assets/images/delete-icon.png"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<app-footer></app-footer>

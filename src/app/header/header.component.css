@@ -1,0 +1,29 @@
+.notification{
+    color:#fff;
+    font-size: 17px;
+    cursor: pointer;
+}
+.notification_box{
+    color: #fff;
+    border: 1px solid #e2e2e2;
+    width: 237px;
+    position: absolute;
+    right: 109px;
+    min-height: 200px;
+    background: #fff;
+    box-shadow: 0 4px 12px 0 #ddd; display: none;
+}
+.single_notifiation {
+    color: #000;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 6px;
+    text-align: left; cursor: pointer;
+}
+.single_notifiation:hover{
+    background-color: #294f8f;
+    color: #fff;
+}
+.notification_due_date{
+    float: right;
+    color: #ccc;
+}

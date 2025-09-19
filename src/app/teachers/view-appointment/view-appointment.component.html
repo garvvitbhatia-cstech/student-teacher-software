@@ -1,0 +1,79 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+  <app-sidebar></app-sidebar>
+  <section class="inner-wrapper">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 id="heading">View Appointment Enquiry</h1>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="add-course-form newsletter-template-form">
+                <form  [formGroup]="form" (ngSubmit)="updateSubject(form.value)" >
+                  <div class="row">
+                    <div class="col-sm-3 form-group">
+                      <label>Apply City <sup>*</sup></label>
+                      <select id="city_id" formControlName="city_id" class="form-control">
+                        <option value="">Apply City</option>
+                        <option *ngFor="let franchise of franchises" value="{{franchise.id}}">{{franchise.title}}</option>
+                      </select>
+
+                    </div>
+                    <div class="col-sm-3 form-group">
+                      <label>Interviewer Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        formControlName="name"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-3 form-group">
+                      <label>Contact<sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="contact"
+                        formControlName="contact"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="col-sm-3 form-group">
+                      <label>Date of appointment<sup>*</sup></label>
+                      <input
+                        type="date"
+                        id="appointment_date"
+                        formControlName="appointment_date"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-3 form-group">
+                      <label>Time Slot<sup>*</sup></label>
+                      
+                      <select id="time_slot" formControlName="time_slot" class="form-control">
+                        <option value="10 AM to 1 PM">10 AM to 1 PM</option>
+                        <option value="1PM to 4 PM">1PM to 4 PM</option>
+                        <option value="4PM to 7 PM">4PM to 7 PM</option>
+                    </select> 
+                    </div>
+                      </div> 
+
+                  <div class="row">
+                    <div class="col-sm-10 form-group">
+                      <a routerLink="/appointments" class="btn btn-info">Back</a>
+                      <button type="submit" id="submitBtn" class="btn btn-submit" style="margin-left: 10px;">Update</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

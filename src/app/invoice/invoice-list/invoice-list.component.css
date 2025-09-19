@@ -1,0 +1,14 @@
+.reason_div{
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.reject_text{
+    color: #f00;
+}
+.approve_text{
+    color: #093;
+}
+.pending_text{
+    color: blue;
+}

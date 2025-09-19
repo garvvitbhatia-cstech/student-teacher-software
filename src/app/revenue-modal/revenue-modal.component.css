@@ -1,0 +1,18 @@
+.inner-details{       border: 1px solid #2269AB;
+    padding: 10px;
+    border-radius: 4px;
+    color: #000;
+    min-height: 187px; background-color: #fff; margin-bottom: 15px;font-size: 15px;}
+.header_div{    
+    background: #2269AB;
+    color: #fff;
+    padding: 8px;
+    margin-bottom: 11px;
+    font-size: 18px;
+}
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}

@@ -1,0 +1,113 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Update Question</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="add-course-form newsletter-template-form">
+                                <form  [formGroup]="form" (ngSubmit)="createUpdate(form.value)" >
+                                  <div class="row">
+                                    <div class="col-sm-6 form-group">
+                                        <label>Class <sup>*</sup></label>
+                                        <select class="form-control" id="class_id" formControlName="class_id">
+                                          <option value="">Select Class</option>
+                                          <option *ngFor="let class of classes" value="{{ class.id }}">{{ class.title }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                      <label>Subject <sup>*</sup></label>
+                                      <select class="form-control" id="subject_id" formControlName="subject_id" >
+                                        <option value="">Select Subject</option>
+                                        <option *ngFor="let subject of subjects" value="{{ subject.id }}">{{ subject.title }}</option>
+                                      </select>
+                                  </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-sm-8 form-group">
+                                          <label>Question <sup>*</sup></label>
+                                          <ckeditor id="question"  formControlName="question"></ckeditor>
+                                        </div>
+                                      <div class="col-sm-4 form-group">
+                                          <label>Question Type <sup>*</sup></label>
+                                          <select class="form-control" formControlName="type" id="type" (change)="showAnswers()">
+                                            <option value="">Select Question Type</option>
+                                            <option value="TrueAndFalse">Yes and No</option>
+                                            <option value="MultipleChoiceRadio">Multiple Choice (Radio Buttons)</option>
+                                            <option value="MultipleChoiceCheckbox">Multiple Choice (Checkboxes Buttons)</option>
+                                            <option value="FillInTheBlank">Fill in the Blank (Input Box) </option>
+                                            <option value="FillInTheBlankTextarea">Fill in the Blank (Textarea)</option>
+                                            <option value="SelectBox">Select Box (Select Box)</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div id="controls">
+                                    <ng-template [ngIf]="questionType == 'MultipleChoiceRadio' || questionType == 'MultipleChoiceCheckbox' || questionType == 'SelectBox'">
+                                      <div class="row" *ngFor="let ansOption of answerOptions; let i = index" [attr.data-index] = "i">
+                                        <div class="col-sm-4 form-group">
+                                          <label>{{ansOption['title']}}</label>
+                                          <input type="text" id="{{ansOption['title']}}" value="{{ ansOption['value'] }}" [id]="'option_'+i" class="form-control">
+                                        </div>
+                                        <div class="col-sm-4 form-group" *ngIf="i == 0">
+                                          <label>&nbsp;</label>
+                                          <a class="btn btn-info" (click)="addMoreOption()">Add More</a>
+                                        </div>
+                                        <div class="col-sm-4 form-group" *ngIf="i > 0">
+                                          <label>&nbsp;</label>
+                                          <a class="btn btn-danger" (click)="removeMoreOption(i)">Remove</a>
+                                        </div>
+                                      </div>
+                                    </ng-template>
+                                    <ng-template [ngIf]="questionType == 'TrueAndFalse'">
+                                      <div class="row" *ngFor="let ansOption of answerOptions;  let i = index">
+                                        <div class="col-sm-4 form-group">
+                                          <label>{{ansOption['title']}}</label>
+                                          <input type="text" id="{{ansOption['title']}}"  value="{{ ansOption['value'] }}" [id]="'option_'+i" class="form-control">
+                                        </div>
+                                      </div>
+                                    </ng-template>
+                                    <ng-template [ngIf]="questionType == 'FillInTheBlank'">
+                                      <div class="row">
+                                        <div class="col-sm-4 form-group">
+                                          <label>Answer</label>
+                                          <input type="text" confirmation="false" class="form-control" value="" class="form-control" readonly>
+                                        </div>
+                                      </div>
+                                    </ng-template>
+                                    <ng-template [ngIf]="questionType == 'FillInTheBlankTextarea'">
+                                      <div class="row">
+                                        <div class="col-sm-4 form-group">
+                                          <label>Answer</label>
+                                          <textarea type="text" confirmation="false" class="form-control" value="" class="form-control" readonly rows="5"></textarea>
+                                        </div>
+                                      </div>
+                                    </ng-template>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-6 form-group">
+                                          <label>Correct Answer</label>
+                                          <input type="text" id="answer"  formControlName="answer" class="form-control">
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <a routerLink="/questionnaires" class="btn btn-info">Back</a>
+                                            <button type="submit" id="submitBtn" class="btn btn-submit" style="margin-left: 10px;">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

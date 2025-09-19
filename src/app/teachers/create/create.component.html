@@ -1,0 +1,134 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Add New Teacher</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="add-course-form newsletter-template-form">
+                              <form  [formGroup]="form" (ngSubmit)="createUser(form.value)" >
+                                    <div class="row">
+                                        <div class="col-sm-3 form-group">
+                                          <label>Name <sup>*</sup></label>
+                                          <input type="text" id="name"  formControlName="name" class="form-control">
+                                        </div>
+
+                                        <div class="col-sm-3 form-group">
+                                          <label>Email Address <sup>*</sup></label>
+                                          <input type="text" id="email"  formControlName="email" class="form-control">
+                                        </div>
+
+                                        <div class="col-sm-3 form-group">
+                                          <label>Password <sup>*</sup></label>
+                                          <input type="password" id="password"  formControlName="password" class="form-control">
+                                        </div>
+
+                                        <div class="col-sm-3 form-group">
+                                          <label>Confirm Password <sup>*</sup></label>
+                                          <input type="password" id="confirm_password"  formControlName="confirm_password" class="form-control">
+                                        </div>
+
+                                        <div class="col-sm-3 form-group">
+                                          <label>Mobile <sup>*</sup></label>
+                                          <input type="text" formControlName="phone" id="phone" class="form-control">
+                                        </div>
+
+
+                                        <div class="col-sm-3 form-group">
+                                          <label>Qualification <sup>*</sup></label>
+                                          <input type="text" formControlName="qualification" id="qualification" class="form-control">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                          <label>Teaching Exp. <sup>*</sup></label>
+                                          <input type="text"  formControlName="teaching_exp" id="teaching_exp" class="form-control">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                          <label>FEES <sup>*</sup></label>
+                                          <input type="text" id="fees"  formControlName="fees" class="form-control">
+                                        </div>
+
+                                        <div class="col-sm-3 form-group">
+                                          <label>Board <sup>*</sup></label>
+                                          <select class="form-control " id="board" formControlName="board" style="height: 120px !important"
+                                          
+                                          multiple>
+                                            <option *ngFor="let board of boards" value="{{ board.id }}">{{ board.title }}</option>
+                                          </select>
+                                      </div>
+
+                                      <div class="col-sm-3 form-group">
+                                          <label>Classes <sup>*</sup></label>
+                                          <select class="form-control multi-select-input" id="class" style="height: 120px !important;" formControlName="class" multiple>
+                                          <option *ngFor="let class of classes" value="{{ class.id }}">{{ class.title }}</option>
+                                          </select>
+                                      </div>
+                                        <div class="col-sm-3 form-group">
+                                          <label>Subjects <sup>*</sup></label>
+                                          <select class="form-control multi-select-input" id="subjects" style="height: 120px !important" formControlName="subject" multiple>
+                                          <option *ngFor="let subject of subjects" value="{{ subject.id }}">{{ subject.title }}</option>
+                                          </select>
+                                      </div>
+
+                                      <div class="col-sm-3 form-group">
+                                        <label>Zip Code <sup>*</sup></label>
+                                        <input type="text" id="zipcode"  formControlName="zipcode" class="form-control">
+                                      </div>
+
+                                        <div class="col-sm-3 form-group">
+                                          <label>PAN No. </label>
+                                          <input type="text" id="pan_no"  formControlName="pan_no" class="form-control">
+                                        </div>
+
+
+                                      </div>
+
+                                      <div class="row">
+                                        <div class="col-sm-3 form-group">
+                                          <label>Aadhar No. </label>
+                                          <input type="text" id="aadhar_no"  formControlName="aadhar_no" class="form-control">
+                                        </div>
+
+
+                                        <div class="col-sm-3 form-group">
+                                          <label>Profile Image</label>
+                                          <input type="file" id="profile_image" class="form-control" accept="image/png, image/jpeg">
+                                      </div>
+
+                                      <div class="col-sm-6 form-group">
+                                        <label>Current Address </label>
+                                        <input
+                                          type="text"
+                                          id="address"
+                                          formControlName="address"
+                                          class="form-control"
+                                        />
+                                      </div>
+
+                                      <div class="col-sm-12 form-group">
+                                          <label>About Us</label>
+                                          <textarea id="about_us"  formControlName="about_us" class="form-control" rows="3"></textarea>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <a routerLink="/teachers" class="btn btn-info">Back</a>
+                                            <button type="submit" id="submitBtn" class="btn btn-submit" style="margin-left: 10px;">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

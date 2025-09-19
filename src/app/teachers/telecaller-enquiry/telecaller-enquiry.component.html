@@ -1,0 +1,110 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Online Interview Form | Total Interview: {{total_record}} | Reg Done: {{reg_done}} | Reg Pending: {{need_call}} | Email Sent: {{total_email_send}}</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="back-search">
+                                <input type="text" id="f_name" placeholder="Search By Name" class="form-control filter_input" >
+                                <input type="text" id="f_email" placeholder="Search By Email" class="form-control filter_input" >
+                                <input type="text" id="f_phone" placeholder="Search By Phone" class="form-control filter_input" >
+                                <select id="need_call" class="form-control filter_input">
+                                    <option value="">Need Call</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">No</option>
+                                </select>
+                                <select id="read_status" class="form-control filter_input">
+                                    <option value="">Mail Accept</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">No</option>
+                                </select>
+                                <select id="f_data_city" class="form-control filter_input">
+                                    <option value="">Apply City</option>
+                                    <option *ngFor="let franchise of franchises" value="{{franchise.id}}">{{franchise.title}}</option>
+                                  </select>
+                                <a (click)="searchData()" style="margin-right:10px;" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-right:10px;" class="btn btn-info">Reset</a>
+                                <a *ngIf="login_user_type == 'Admin' || export_p == 'YES'"  (click)="exportCSV()" id="exportBtn" class="btn btn-info">Export CSV</a>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S No.</th>
+                                            <th width="62px">Token</th>
+                                            <th width="62px">Apply City</th>
+                                            <th width="183px">Telecaller Name</th>
+                                            <th width="183px">Interviewer Name</th>
+                                            <th width="183px">Name</th>
+                                            <th width="372px">Mobile</th>
+                                            <th width="372px">Email</th>
+                                            <th width="372px">Call Need</th>
+                                            <th width="372px">Created Date</th>
+                                            <th width="372px">Status</th>
+                                            <th width="153px">Edit</th>
+                                            <th width="153px">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let faq of faqs | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ i+1 }}.</td>
+                                            <td>{{ faq?.token }}</td>
+                                            <td>{{ faq?.f_city }}</td>
+                                            <td>{{ faq?.t_name }}</td>
+                                            <td>{{ faq?.i_name }}</td>
+                                            
+                                            <td>{{ faq?.full_name }}</td>
+                                            <td>{{ faq?.mobile }}</td>
+                                            <td>{{ faq?.email }} <span *ngIf="faq.read_status==1">Accepted</span></td>
+                                            <td>{{ faq?.need_follow_up }}</td>
+                                            <td>{{ faq?.created }}</td>
+                                            <td>
+                                                <a style="cursor:pointer" (click)="updateStatus(faq.id,'2')" *ngIf="faq.status == 1" class="btn-round active"><img src="assets/images/right-tick.png"></a>
+                                                <a style="cursor:pointer" (click)="updateStatus(faq.id,'1')" *ngIf="faq.status == 2" class="btn-round"><img src="assets/images/cross-icon.png"></a>
+                                            </td>
+                                            <td>
+                                                <a *ngIf="login_user_type == 'Admin' || edit_p == 'YES'" [routerLink]="['/view-telecaller-data/', faq.id  ]" class="action-btn"><span><img src="assets/images/edit-icon.png"></span></a>
+                                            </td>
+                                            <td>
+                                                <a *ngIf="login_user_type == 'Admin' || delete_p == 'YES'" style="cursor:pointer" (click)="deleteUser(faq.id)" class="action-btn"><span><img src="assets/images/delete-icon.png"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<app-footer></app-footer>

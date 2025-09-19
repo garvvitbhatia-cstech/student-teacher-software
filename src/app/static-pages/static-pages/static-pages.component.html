@@ -1,0 +1,65 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Static Pages</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="back-search">
+                                <input type="text" id="title" placeholder="Search By Title" class="form-control filter_input" >
+                                <a (click)="searchData()" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-left:10px;" class="btn btn-info">Reset</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S No.</th>
+                                            <th width="283px">Title</th>
+                                            <th width="153px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let record of records | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ i+1 }}.</td>
+                                            <td>{{ record?.title }}</td>
+                                            <td>
+                                                <a [routerLink]="['/edit-static-page/', record.id  ]" class="action-btn"><span><img src="assets/images/edit-icon.png"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,274 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Student Enquiry List | Total Records: {{total_records}} | SMS Sent: {{total_sms_send}}</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="back-search">
+                                <input type="text" id="f_name" placeholder="Search By Name" class="form-control filter_input" >
+                                <input type="text" id="f_email" placeholder="Search By Email" class="form-control filter_input" >
+                                <input type="text" id="f_phone" placeholder="Search By Phone" class="form-control filter_input" >
+                                <select id="f_data_city" class="form-control filter_input">
+                                  <option value="">Apply City</option>
+                                  <option *ngFor="let franchise of franchises" value="{{franchise.id}}">{{franchise.title}}</option>
+                                </select>
+                                <select id="f_task_status" class="form-control filter_input">
+                                  <option value="">Select Assigned</option>
+                                  <option value="1">Assigned</option>
+                                  <option value="2">Unassigned</option>
+                                </select>
+                                <a (click)="searchData()" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-left:10px;" class="btn btn-info">Reset</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top:10px;" class="row">
+                      
+                      <div class="col-sm-12">
+                          <div *ngIf="login_user_type == 'Admin'" class="btn-group">
+                              <!-- <a style="margin-right:5px;background: #f00;" data-toggle="modal" data-target="#resetupModal" class="btn btn-info">Resetup</a> -->
+
+                              <a *ngIf="login_user_type == 'Admin' || import_p == 'YES'" class="btn btn-info" href="{{SiteUrl}}/storage/sample-csv/student-enquiry.csv" style="margin-right:5px;">Sample CSV</a>
+
+                              <a *ngIf="login_user_type == 'Admin' || import_p == 'YES'" style="margin-right:5px;" data-toggle="modal" data-target="#importModal" class="btn btn-info">Import</a> 
+
+                              <a *ngIf="login_user_type == 'Admin' || export_p == 'YES'" (click)="exportCSV()" style="margin-right:5px;" id="exportBtn" class="btn btn-info">Export CSV</a>
+
+                              <a *ngIf="login_user_type == 'Admin' || add_p == 'YES'" data-toggle="modal" data-target="#basicModal" (click)="setHeading()" class="btn btn-info">+Add</a>
+                          </div>
+                      </div>
+                  </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S No.</th>
+                                            <th width="183px">Parents Name</th>
+                                            <th width="183px">School Name</th>
+                                            <th width="142px">Email Address</th>
+                                            <th width="142px">Mobile</th>
+                                            <th width="142px">City</th>
+                                            <th width="142px">State</th>
+                                            <th width="142px">Board</th>
+                                            <th width="142px">Class</th>
+                                            <th width="142px">Subject</th>
+                                            <th width="72px" *ngIf="login_user_type == 'Admin'" >Status</th>
+                                            <th width="72px" *ngIf="login_user_type == 'Admin'" >Send SMS</th>
+                                            <th *ngIf="login_user_type == 'Admin' || edit_p == 'YES' || delete_p == 'YES'" width="153px">Actions</th>
+                                            <th width="153px">Task</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ i+1 }}.</td>
+                                            <td>{{ user?.parents_name }}</td>
+                                            <td>{{ user?.school_name }}</td>
+                                            <td>{{ user?.email }}</td>
+                                            <td>{{ user?.phone }}</td>
+                                            <td>{{ user?.city_name }}</td>
+                                            <td>{{ user?.state_name }}</td>
+                                            <td>{{ user?.board }}</td>
+                                            <td>{{ user?.class }}</td>
+                                            <td>{{ user?.subject }}</td>
+                                            <td *ngIf="login_user_type == 'Admin'">
+                                                <a style="cursor:pointer" (click)="updateStatus(user.id,'2')" *ngIf="user.status == 1" class="btn-round active"><img src="assets/images/right-tick.png"></a>
+                                                <a style="cursor:pointer" (click)="updateStatus(user.id,'1')" *ngIf="user.status == 2" class="btn-round"><img src="assets/images/cross-icon.png"></a>
+                                            </td>
+                                            <td *ngIf="login_user_type == 'Admin'">
+                                               <a (click)="sendSms(user.phone,user.id)" [id]="'send_btn_'+user.id" class="btn btn-info">Send</a> 
+                                            </td>
+                                            <td>
+                                                <a *ngIf="(user.task_status == 2 && login_user_type == 'Admin') || edit_p == 'YES'" data-toggle="modal" data-target="#basicModal" (click)="getRowData(user.id)" style="cursor: pointer; margin-right: 15px;" class="action-btn"><span><img src="assets/images/edit-icon.png"></span></a>
+                                                <a *ngIf="(user.task_status == 2 && login_user_type == 'Admin') || delete_p == 'YES'" style="cursor:pointer" (click)="deleteUser(user.id)" class="action-btn"><span><img src="assets/images/delete-icon.png"></span></a>
+                                            </td>
+                                            <td>
+                                                <span style="color:#000;" *ngIf="user.task_status == 1">{{ user?.picked_by }}</span>
+                                                <a *ngIf="user.task_status == 2" (click)="createTaskConfirm(user.id)" class="btn btn-info">Create Task</a>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="users.length == 0">
+                                            <td colspan="20" align="center">No Records</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="resetupModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">Re-Setup Data</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label>Choose Type <sup>*</sup></label>
+                        <select id="description_type" class="form-control">
+                            <option value="DNP">DNP</option>
+                            <option value="Not interested">Not interested</option>
+                            <option value="Appointment Confirmed">Appointment Confirmed</option>
+                            <option value="Call Back">Call Back</option>
+                            <option value="Lives Out Of City">Lives Out Of City</option>
+                            <option value="Interested For VC">Interested For VC</option>
+                        </select>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <a (click)="resetupData()" id="resetupBtn" class="btn btn-primary">Submit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">Import Data</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label>Choose CSV File <sup>*</sup></label>
+                        <input type="file" id="file" class="form-control">
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <a (click)="uploadData()" id="uploadBtn" class="btn btn-primary">Upload</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">{{heading}}</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row"> 
+                    
+                    
+                    <div class="col-sm-6 form-group">
+                        <label>Parent Name <sup>*</sup></label>
+                        <input type="text" id="parents_name" class="form-control">
+                        <input type="hidden" id="row_id" value="0">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Student School Name </label>
+                        <input type="text" id="school_name" class="form-control">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Email <sup>*</sup></label>
+                        <input type="text" id="email" class="form-control">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Phone <sup>*</sup></label>
+                        <input type="text" id="phone" maxlength="10" class="form-control">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Class</label>
+                        <select class="form-control" id="class">
+                        <option value="">Select Class</option>
+                        <option *ngFor="let class of classes" value="{{ class.title }}">{{ class.title }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Subject</label>
+                        <select class="form-control" id="subject">
+                        <option value="">Select Subject</option>
+                        <option *ngFor="let subject of subjects" value="{{ subject.title }}">{{ subject.title }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Board</label>
+                        <select class="form-control" id="board">
+                        <option value="">Select Board</option>
+                        <option *ngFor="let board of boards" value="{{ board.title }}">{{ board.title }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label>Address </label>
+                        <input type="text" id="address" class="form-control">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Pin Code </label>
+                        <input type="text" maxlength="6" id="pincode" class="form-control">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Landmark </label>
+                        <input type="text" id="landmark" class="form-control">
+                    </div>
+                    
+                    
+                    <div class="col-sm-6 form-group">
+                        <label>State </label>
+                        <select class="form-control" id="state" (change)="getCitiies()">
+                            <option value="">Select State</option>
+                            <option *ngFor="let state of stateList" id="{{state.id}}" value="{{ state.id }}">{{ state.state }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>City <sup>*</sup></label>
+                        <select class="form-control" id="city" *ngIf="heading == 'Add Student Enquiry'">
+                            <option value="">Select City</option>
+                            <option *ngFor="let city of cityList" value="{{ city.id }}">{{ city.title }}</option>
+                        </select>
+                        <select class="form-control" id="city" *ngIf="heading == 'Edit Student Enquiry'">
+                            <option value="">Select City</option>
+                            <option *ngFor="let city of cityList" [attr.selected]="rowData.city == city.id ? true : null" value="{{ city.id }}">{{ city.title }}</option>
+                        </select>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+              <a (click)="saveData()" id="submitBtn" class="btn btn-primary">Submit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+</main>
+
+<app-footer></app-footer>

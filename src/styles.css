@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.ngx-pagination .current {
+    padding: 4px 10px !important;
+    background: #f69225 !important;
+    border: 1px solid #f69225 !important;
+    border-radius: 4px;
+    color: #fefefe;
+    cursor: default;
+}
+.filter_input{ width:17%;
+    margin-right: 10px;}

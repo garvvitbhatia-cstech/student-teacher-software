@@ -1,0 +1,60 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Settings</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="add-course-form newsletter-template-form">
+                                <form  [formGroup]="form" (ngSubmit)="updateSetting(form.value)">
+                                    <div class="row">
+                                        <div class="col-sm-3 form-group">
+                                            <label>Student Application Version <sup>*</sup></label>
+                                            <input type="text" maxlength="4" id="student_app_version"  formControlName="student_app_version" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 form-group">
+                                            <label>Teacher Application Version <sup>*</sup></label>
+                                            <input type="text" maxlength="4" id="teacher_app_version"  formControlName="teacher_app_version" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 form-group">
+                                            <label>Company Commission (%) <sup>*</sup></label>
+                                            <input type="text" maxlength="6" id="teacher_commission"  formControlName="teacher_commission" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 form-group">
+                                            <label>Show Collection History (in days) <sup>*</sup></label>
+                                            <input type="text" maxlength="2" id="collection_history_days"  formControlName="collection_history_days" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 form-group">
+                                            <label>Amount Collect From Teacher (in days) <sup>*</sup></label>
+                                            <input type="text" maxlength="1" id="payment_collect_days"  formControlName="payment_collect_days" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <button type="submit" id="updateBtn" class="btn btn-submit">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

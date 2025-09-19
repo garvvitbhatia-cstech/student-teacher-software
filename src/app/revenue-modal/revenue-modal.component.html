@@ -1,0 +1,118 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 (click)="getRevenueReport()">Revenue Dashboard</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="inner-details">
+                                <div class="header_div">Tutors Activity</div>
+                                <table width="100%">
+                                    <tr>
+                                        <td height="40"> Active Tutors For The Day</td>
+                                        <td align="right">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Active Tutors For The Month</td>
+                                        <td align="right">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Total Active Tutors</td>
+                                        <td align="right">0</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="inner-details">
+                                <div class="header_div">Tutoring Hours (TH)</div>
+                                <table width="100%">
+                                    <tr>
+                                        <td height="40"> Tutoring Hours For The Day</td>
+                                        <td align="right">{{TodaysHours}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Tutoring Hours For The Month</td>
+                                        <td align="right">{{MonthHours}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Total Tutoring Hours</td>
+                                        <td align="right">{{totalHours}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="inner-details">
+                                <div class="header_div">Gross Revenue</div>
+                                <table width="100%">
+                                    <tr>
+                                        <td height="40"> Gross Revenue For The Day</td>
+                                        <td align="right">{{totalTodaysAmount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Gross Revenue For The Month</td>
+                                        <td align="right">{{totalMonthAmount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Total Gross Revenue</td>
+                                        <td align="right">{{totalAmount}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="inner-details">
+                                <div class="header_div">Tutors pay</div>
+                                <table width="100%">
+                                    <tr>
+                                        <td height="40"> Tutors pay For The Day</td>
+                                        <td align="right">{{totalTutorTodaysAmount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Tutors pay For The Month</td>
+                                        <td align="right">{{totalTutorMonthAmount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Total Tutors pay</td>
+                                        <td align="right">{{totalTutorAmount}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="inner-details">
+                                <div class="header_div">Net Revenue</div>
+                                <table width="100%">
+                                    <tr>
+                                        <td height="40"> Net Revenue For The Day</td>
+                                        <td align="right">{{totalNetTodaysAmount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Net Revenue For The Month</td>
+                                        <td align="right">{{totalNetMonthAmount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="40"> Total Net Revenue</td>
+                                        <td align="right">{{totalNetAmount}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<app-footer></app-footer>

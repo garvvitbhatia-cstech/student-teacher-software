@@ -1,0 +1,410 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+  <app-sidebar></app-sidebar>
+  <section class="inner-wrapper">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 id="heading">View Tutor Registration | <span *ngIf="userData.full_name">{{ userData?.full_name }}</span><span *ngIf="userData.first_name">{{ userData?.first_name }} {{ userData?.middle_name }} {{ userData?.last_name }}</span> | {{userData.aadhar_dob}}</h1>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="add-course-form newsletter-template-form">
+                <form  [formGroup]="form" (ngSubmit)="updateSubject(form.value)" >
+                  <div class="row">
+                    <div class="col-sm-2 form-group">
+                      <label>Token</label>
+                      {{userData.interview_form_token}}
+
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>State <sup>*</sup></label>
+                      <select id="state_id" formControlName="state_id" class="form-control">
+                        <option value="">Apply State</option>
+                        <option *ngFor="let state of stateList" value="{{state.id}}">{{state.state}}</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Apply City <sup>*</sup></label>
+                      <select id="city_id" formControlName="city_id" class="form-control">
+                        <option value="">Apply City</option>
+                        <option *ngFor="let franchise of franchises" value="{{franchise.id}}">{{franchise.title}}</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>First Name <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="first_name"
+                        formControlName="first_name"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Middle Name <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="middle_name"
+                        formControlName="middle_name"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Last Name <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="last_name"
+                        formControlName="last_name"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Contact <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="contact"
+                        formControlName="contact"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Whatsaapp <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="whatsaapp"
+                        formControlName="whatsaapp"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Email Address <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="email"
+                        formControlName="email"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>DOB <sup>*</sup></label>
+                      <input
+                        type="date"
+                        id="dob"
+                        formControlName="dob"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Gender <sup>*</sup></label>
+                      <select id="gender" formControlName="gender" class="form-control">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Father <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="father_name"
+                        formControlName="father_name"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Mother <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="mother_name"
+                        formControlName="mother_name"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <label>Husband <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="husband_name"
+                        formControlName="husband_name"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="col-sm-4 form-group">
+                      <label>Current Address <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="current_address"
+                        formControlName="current_address"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="col-sm-2 form-group">
+                      <label>Pincode <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="pincode"
+                        formControlName="pincode"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="col-sm-4 form-group">
+                      <label>Permanent Address <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="permanent_address"
+                        formControlName="permanent_address"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="col-sm-2 form-group">
+                      <label>Pincode <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="pincode_2"
+                        formControlName="pincode_2"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="col-sm-3 form-group">
+                      <label>Document Submit <sup>*</sup></label>
+                      <select id="document_verify"
+                      formControlName="document_verify"
+                      class="form-control">
+                        <option value="1">Yes</option>
+                        <option value="2">No</option>
+                      </select>
+                    </div>
+
+                      <div class="col-sm-3 form-group">
+                        <label>Owned Vehicle <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="owned_vehicle"
+                          formControlName="owned_vehicle"
+                          class="form-control"
+                        />
+                      </div>
+
+
+                      <div class="col-sm-5 form-group">
+                        <label>	Aadhaar No <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="aadhaar"
+                          formControlName="aadhaar"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-2 form-group">
+                        <label>	Latitude</label>
+                        <input
+                          type="text"
+                          id="latitude"
+                          formControlName="latitude"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-2 form-group">
+                        <label>	Longitude</label>
+                        <input
+                          type="text"
+                          id="longitude"
+                          formControlName="longitude"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-2 form-group">
+                        <label>	Rating</label>
+                        <input
+                          type="text"
+                          id="rating"
+                          formControlName="rating"
+                          class="form-control"
+                        />
+                      </div>
+                      
+                      <div class="col-sm-2 form-group">
+                        <label>	Preferred Area 1</label>
+                        <input
+                          type="text"
+                          id="prefered_location"
+                          formControlName="prefered_location"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-2 form-group">
+                        <label>	Preferred Area 2</label>
+                        <input
+                          type="text"
+                          id="prefered_location_2"
+                          formControlName="prefered_location_2"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-2 form-group">
+                        <label>	Preferred Area 3</label>
+                        <input
+                          type="text"
+                          id="prefered_location_3"
+                          formControlName="prefered_location_3"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-2 form-group">
+                        <label>	Preferred Area 4</label>
+                        <input
+                          type="text"
+                          id="prefered_location_4"
+                          formControlName="prefered_location_4"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-2 form-group">
+                        <label>	Preferred Area 5</label>
+                        <input
+                          type="text"
+                          id="prefered_location_5"
+                          formControlName="prefered_location_5"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-3 form-group">
+                        <label>Board <sup>*</sup></label>
+                        <select class="form-control" id="board" formControlName="board" style="height: 120px !important" multiple>
+                          <option *ngFor="let board of boards" value="{{ board.id }}">{{ board.title }}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-3 form-group">
+                        <label>Classes <sup>*</sup></label>
+                        <select class="form-control multi-select-input" id="class" style="height: 120px !important;" formControlName="class" multiple>
+                        <option *ngFor="let class of classes" value="{{ class.id }}">{{ class.title }}</option>
+                        </select>
+                    </div>
+                      <div class="col-sm-3 form-group">
+                        <label>Subjects <sup>*</sup></label>
+                        <select class="form-control multi-select-input" id="subjects" style="height: 120px !important" formControlName="subjects" multiple>
+                        <option *ngFor="let subject of subjects" value="{{ subject.id }}">{{ subject.title }}</option>
+                        </select>
+                    </div>
+
+                      </div>
+                      <h2>Bank Details</h2>
+                      <div class="row">
+
+                        <div class="col-sm-3 form-group">
+                            <label>	Bank Name <sup>*</sup></label>
+                            <input
+                              type="text"
+                              id="bank_name"
+                              formControlName="bank_name"
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-sm-3 form-group">
+                            <label>	Account No <sup>*</sup></label>
+                            <input
+                              type="text"
+                              id="account_number"
+                              formControlName="account_number"
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-sm-3 form-group">
+                            <label>	IFSC <sup>*</sup></label>
+                            <input
+                              type="text"
+                              id="ifsc"
+                              formControlName="ifsc"
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-sm-3 form-group">
+                            <label>	Branch <sup>*</sup></label>
+                            <input
+                              type="text"
+                              id="branch"
+                              formControlName="branch"
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-sm-3 form-group">
+                            <label>	UPI <sup>*</sup></label>
+                            <input
+                              type="text"
+                              id="upi_id"
+                              formControlName="upi_id"
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-sm-3 form-group">
+                            <label>	Sign Image <sup>*</sup></label>
+                            
+                          </div>
+                      </div>
+                    
+                      
+                      
+                  <h2>Aadhar Verification</h2>
+                  <div class="row">
+                    <div class="col-sm-3 form-group">
+                      <label>	Aadhaar No</label>
+                      <input
+                        type="text" readonly value="{{userData.aadhaar}}"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2"><label style="color:#fff">-</label><a (click)="SendAadharOtp()" id="send_aadhar_otp_btn" class="btn btn-info">Send OTP</a> </div>
+                    <div class="col-sm-2 form-group">
+                      <label>	Aadhaar OTP</label>
+                      <input
+                        type="text" id="aadhar_otp"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-2"><label style="color:#fff">-</label><a (click)="VerifyAadharOTP()" id="v_aadhar_otp_btn" class="btn btn-info">Verify OTP</a> </div>
+                    <div *ngIf="userData.aadhar_org_photo" class="col-sm-2">
+                      <img src="data:image/png;base64,{{userData.aadhar_org_photo}}">
+                    </div>
+                  </div>
+
+                  <h2>About</h2>
+
+                  <div class="row">
+
+                    <div class="col-sm-12 form-group">
+                      <label>About</label>
+                      <textarea
+                        id="about_us"
+                        formControlName="about_us"
+                        class="form-control"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                    
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-10 form-group">
+                      <a routerLink="/tutor-registrations" class="btn btn-info">Back</a> 
+                      <button type="submit" id="submitBtn" class="btn btn-submit" style="margin-left: 10px;">Update</button>&nbsp;
+                      <!-- <a style="cursor:pointer" (click)="updateStatus(userData.id,'2')" *ngIf="userData.status == 1" class="btn-round active"><img src="assets/images/right-tick.png"></a>
+                      <a style="cursor:pointer" (click)="updateStatus(userData.id,'1')" *ngIf="userData.status == 2" class="btn-round"><img src="assets/images/cross-icon.png"></a> -->
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

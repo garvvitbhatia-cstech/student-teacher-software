@@ -1,0 +1,115 @@
+/*==== submenu css ====*/
+.dcjq-parent-li{
+    position: relative;
+}
+.dcjq-icon {
+    height:17px;
+    width:17px;
+    display:inline-block;
+    background: url(../images/nav-expand.png) no-repeat top;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    position:absolute;
+    right:10px;
+    top:15px;
+}
+.active .dcjq-icon {
+    background: url(../images/nav-expand.png) no-repeat bottom;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+}
+.dcjq-parent-li .dcjq-parent.active{
+    background: rgb(248, 175, 96);
+    border-bottom-color: transparent;
+}
+.dcjq-parent-li ul.sub {
+    margin: 0;
+    padding: 0;
+    float: left;
+    background: #f69225;
+    display: none;
+}
+.dcjq-parent-li ul.sub li a{
+    border: none;
+    padding: 8px 12px 8px 35px;
+    border-radius: 0;
+}
+.dcjq-parent-li ul.sub li + li{
+    border-top: solid 1px rgba(255, 255, 255, 0.27);
+}
+.dcjq-parent-li ul.sub li a:hover{
+    background: rgba(255, 255, 255, 0.27);
+}
+
+ul.sub .dcjq-parent-li .dcjq-parent.active{
+    background: rgb(89, 118, 165);
+}
+.dcjq-parent-li ul.sub .sub{
+    background: #1c4384;
+}
+.dcjq-parent-li .dcjq-parent.active:hover{
+    border-radius: 0;
+}
+
+.sidebar-toggle-box {
+    float: left;
+    padding-left: 15px;
+    margin-top: 4px;
+    display: none;
+}
+.sidebar-toggle-box .fa {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    color: #fff;
+}
+
+.navbar-toggle .icon-bar+.icon-bar {
+    margin-top: 7px;
+}
+.navbar-toggle .icon-bar {
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    border-radius: 0;
+
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+}
+.navbar-toggle {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    position: absolute;
+    right: 15px;
+    padding: 0;
+    top: 7px;
+    border-radius: 0;
+}
+.navbar-toggle.closeMenu .icon-bar:first-child{
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -mstransform: rotate(-45deg);
+    position: relative;
+    top: 0;
+}
+.navbar-toggle.closeMenu .icon-bar:last-child{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    position: relative;
+    top: -9px;
+}
+.navbar-toggle.closeMenu .icon-bar:nth-child(2){
+    display: none;
+}
+button.navbar-toggle.closeMenu {
+    padding: 0;
+    top: 17px;
+}

@@ -1,0 +1,88 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Reviews</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="back-search">
+
+                                <input type="text" id="reviews" placeholder="Search By Reviews" class="form-control filter_input" >
+
+                                <a (click)="searchData()" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-left:10px;" class="btn btn-info">Reset</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            <!-- <div class="btn-group right-btn">
+                                <a routerLink="/add-question" class="btn btn-info">Add Review</a>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S No.</th>
+                                            <th width="130px">Order</th>
+                                            <th width="230px">Teacher</th>
+                                            <th width="130px">Student</th>
+                                            <th width="230px">Rating</th>
+                                            <th width="230px">Review</th>
+                                            <th width="72px">Status</th>
+                                            <th width="72px">Created</th>
+                                            <th width="153px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let review of reviews | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ i+1 }}.</td>
+                                            <td>{{ review?.order_no }}</td>
+                                            <td>{{ review?.teacher_name }}</td> 
+                                            <td>{{ review?.student_name }}</td>
+                                            <td>{{ review?.rating }}</td>
+                                            <td>{{ review?.reviews }}</td>
+                                            <td>
+                                                <a style="cursor:pointer" (click)="updateStatus(review.id,'2')" *ngIf="review.status == 1" class="btn-round active"><img src="assets/images/right-tick.png"></a>
+                                                <a style="cursor:pointer" (click)="updateStatus(review.id,'1')" *ngIf="review.status == 2" class="btn-round"><img src="assets/images/cross-icon.png"></a>
+                                            </td>
+                                            <td>{{review?.created_at}}</td>
+                                            <td>
+                                               <!--  <a [routerLink]="['/edit-review/', review.id  ]" class="action-btn"><span><img src="assets/images/edit-icon.png"></span></a> -->
+                                                <a style="cursor:pointer" (click)="deleteUser(review.id)" class="action-btn"><span><img src="assets/images/delete-icon.png"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<app-footer></app-footer>

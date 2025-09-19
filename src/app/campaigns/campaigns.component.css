@@ -1,0 +1,19 @@
+.success_tag{color: #fff;
+    background: #093;
+    padding: 3px 5px;
+    border-radius: 4px;}
+    
+    .pending_tag{color: #fff;
+    background:blue;
+    padding: 3px 5px;
+    border-radius: 4px;}
+    
+    .cancel_tag{color: #fff;
+    background:red;
+    padding: 3px 5px;
+    border-radius: 4px;} 
+    
+    .running_tag{color: #fff;
+        background:orange;
+        padding: 3px 5px;
+        border-radius: 4px;} 

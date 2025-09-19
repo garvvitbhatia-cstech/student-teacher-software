@@ -1,0 +1,278 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper" *ngIf="userID > 0">
+        <div class="col-sm-12">
+            <div class="row">
+                <!-- <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Wallet Balance: 0</h4>
+                    </div>
+                </div> -->
+                <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Total Classes:{{totalClasses}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Today Earning: {{oneDayEarning}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Month Earning:  {{monthlyEarning}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Total Earning:  {{totalEarning}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1" style="background-color:#093">
+                        <h4>Payout Done:  {{total_pay}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1" style="background-color:darkgoldenrod">
+                        <h4>Payout Pending:  {{pending_pay}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 *ngIf="userID > 0" >{{user.name}} Payouts</h1>
+                    <h1 *ngIf="userID == 0">Payouts | Total Pay: {{totalPay}}</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="back-search">
+                                <input type="text" id="title" placeholder="Search By Title" class="form-control filter_input" >
+                                
+                                <a (click)="searchData()" style="margin-right:10px;" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-right:10px;" class="btn btn-info">Reset</a>
+                                <a data-toggle="modal" data-target="#basicModal" (click)="setHeading()" class="btn btn-info">+Add</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">DB ID</th>
+                                            <th width="283px">Teacher</th>
+                                            <th width="283px">Phone</th>
+                                            <th width="283px">Type</th>
+                                            <th width="283px">Pay Type</th>
+                                            <th width="283px">Pay Date</th>
+                                            <th width="283px">Amount</th>
+                                            <th width="283px">Payment Status</th>
+                                            <th width="283px">Txn ID</th>
+                                            <th width="283px">Remark</th>
+                                            <th width="153px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let board of payouts | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ board?.id }}</td>
+                                            <td>{{ board?.username }}</td>
+                                            <td>{{ board?.phone }}</td>
+                                            <td>{{ board?.type }}</td>
+                                            <td>{{ board?.pay_type }}</td>
+                                            <td>{{ board?.pay_date }}</td>
+                                            <td>{{ board?.amount }} INR</td>
+                                            <td><span *ngIf="board?.payment_status == 1" class="pay_status_success">Success</span><span class="pay_status_fail" *ngIf="board?.payment_status == 2">Pending</span></td>
+                                            <td>{{ board?.transfer_id }}</td>
+                                            <td>{{ board?.remark }}</td>
+                                            
+                                            <td>
+
+                                                <a style="cursor:pointer" (click)="deleteUser(board.id)" class="action-btn"><span><img src="assets/images/delete-icon.png"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">{{heading}}</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row">
+                    
+                    <div class="col-sm-9 form-group">
+                        <label>Teacher Phone No <sup>*</sup></label>
+                        <input type="text" maxlength="10" value="{{user.phone}}" id="teacher_phone" class="form-control">
+                        <input type="hidden" id="row_id" value="0">
+                    </div>
+                    <div class="col-sm-3 form-group" *ngIf="userID == 0" style="padding-top:23px;text-align: right;">
+                        <a data-toggle="modal" data-target="#tutorModal" class="btn btn-primary">Tutor Search</a>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Type <sup>*</sup></label>
+                        <select id="pay_type" class="form-control">
+                            <option value="Cashfree">Cashfree</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Amount <sup>*</sup></label>
+                        <input type="text" id="amount" class="form-control">
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label>Pay Date <sup>*</sup></label>
+                        <input type="date"  id="pay_date" maxlength="10" class="form-control">
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label>Remark <sup>*</sup></label>
+                        <textarea id="remark" class="form-control"></textarea>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+              <a (click)="saveData()" id="submitBtn" class="btn btn-primary">Submit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="tutorModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal_tutors">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">Search Tutors</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row">
+                    
+                    <div class="col-sm-2 form-group">
+                        <select class="form-control" id="search_state_id" (change)="getCitiies()">
+                            <option value="">Select State</option>
+                            <option *ngFor="let state of stateList" id="{{state.id}}" value="{{ state.id }}">{{ state.state }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <select class="form-control" id="search_city_id">
+                            <option value="">Select City</option>
+                            <option *ngFor="let city of cityList" value="{{ city.id }}">{{ city.title }}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-2 form-group">
+                        <select class="form-control" id="search_class">
+                            <option value="">Select Class</option>
+                            <option *ngFor="let class of f_classes" value="{{ class.id }}">{{ class.title }}</option>
+                            </select>
+                    </div>
+
+                    <div class="col-sm-2 form-group">
+                        <select class="form-control" id="search_subjects">
+                            <option value="">Select Subject</option>
+                            <option *ngFor="let subject of f_subjects" value="{{ subject.id }}">{{ subject.title }}</option>
+                            </select>
+                    </div>
+
+                    <div class="col-sm-2 form-group">
+                        <select class="form-control" id="search_board">
+                            <option value="">Select Board</option>
+                            <option *ngFor="let board of f_boards" value="{{ board.id }}">{{ board.title }}</option>
+                            </select>
+                    </div>
+                    
+                    <div class="col-sm-2 form-group" style="text-align: right;"><a id="createBookingBtn" (click)="searchTutor()" class="btn btn-primary">Search</a></div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control" id="search_tutor_name" placeholder="By Name">
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control" id="search_tutor_email" placeholder="By Email">
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control" id="search_tutor_phone" placeholder="By Phone">
+                    </div>
+                    <div class="col-sm-3 form-group">
+                        <input type="text" class="form-control" id="search_tutor_address" placeholder="By Address">
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-12">
+                <div class="table-responsive widthFixed" style="height:400px">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="62px">S No.</th>
+                            <th width="62px">DB ID</th>
+                            <th width="183px">Profile Image</th>
+                            <th width="142px">Name</th>
+                            <th width="183px">Email Address</th>
+                            <th width="120px">Mobile</th>
+                            <th width="120px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of f_tutors; let i = index" [attr.data-index]="i" class="odd">
+                            <td>{{ i+1 }}.</td>
+                            <td>{{ user.id }}</td>
+                            <td><a *ngIf="user.profile_image" target="_blank" href="{{SiteUrl}}storage/users/{{user.profile_image}}"><img   src="{{SiteUrl}}storage/users/{{user.profile_image}}" style="width: 70px;" /></a>
+                              <img  *ngIf="!user.profile_image" src="assets/images/avatar-pic.jpg" style="width: 70px;" /></td>
+                            <td onmousedown="return false" onselectstart="return false">{{ user.name }}</td>
+                            <td >{{ user.email }}</td>
+                            <td onmousedown="return false" onselectstart="return false" >{{ user.phone }}</td>
+                            <td><a (click)="selectTutor(user.phone)" class="btn btn-primary">Select</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="tutorPopupCloseBtn" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+</main>
+
+<app-footer></app-footer>

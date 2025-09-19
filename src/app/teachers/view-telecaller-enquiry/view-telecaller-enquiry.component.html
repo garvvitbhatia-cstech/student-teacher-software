@@ -1,0 +1,300 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+  <app-sidebar></app-sidebar>
+  <section class="inner-wrapper">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 id="heading">View Interview Form Data</h1>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="add-course-form newsletter-template-form">
+                <form  [formGroup]="form" (ngSubmit)="updateSubject(form.value)" >
+                  <div class="row">
+                    <div class="col-sm-3 form-group">
+                      <label>Apply City <sup>*</sup></label>
+                      <select id="city_id" formControlName="city_id" class="form-control">
+                        <option value="">Apply City</option>
+                        <option *ngFor="let franchise of franchises" value="{{franchise.id}}">{{franchise.title}}</option>
+                      </select>
+
+                    </div>
+                    <div class="col-sm-3 form-group">
+                      <label>Telecaller Name <sup>*</sup></label>
+                      <select id="telecaller_name" formControlName="telecaller_name" class="form-control">
+                        <option value="">Select Interviewer</option>
+                        <option *ngFor="let telecaller of telecallers" value="{{telecaller?.id}}">{{telecaller?.name}}</option>
+                    </select>
+
+                    </div>
+
+                    <div class="col-sm-3 form-group">
+                      <label>Interviewer Name <sup>*</sup></label>
+                      <select id="interviewer_name" formControlName="interviewer_name" class="form-control">
+                        <option value="">Select Interviewer</option>
+                        <option *ngFor="let interviewer of interviewers" value="{{interviewer?.id}}">{{interviewer?.name}}</option>
+                    </select>
+                    </div>
+
+                    <div class="col-sm-3 form-group">
+                      <label>DOV</label>
+                      <input
+                        type="date"
+                        id="dov"
+                        formControlName="dov"
+                        class="form-control"
+                      />
+                      <input
+                        type="hidden"
+                        id="send_email"
+                        formControlName="send_email"
+                      />
+                    </div>
+                    <div class="col-sm-3 form-group">
+                      <label>Shortlisting Category <sup>*</sup></label>
+                      <select id="shortlisting_category" formControlName="shortlisting_category" class="form-control">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select> 
+                    </div>
+
+                    <div class="col-sm-3 form-group">
+                      <label>Full Name <sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="full_name"
+                        formControlName="full_name"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-3 form-group">
+                      <label>Gender <sup>*</sup></label>
+                      
+                      <select id="gender" formControlName="gender" class="form-control">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select> 
+                    </div>
+
+                    <div class="col-sm-3 form-group">
+                        <label>Current Address <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="current_address"
+                          formControlName="current_address"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-sm-3 form-group">
+                        <label>Mobile <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="mobile" readonly
+                          formControlName="mobile"
+                          class="form-control"
+                        />
+                      </div>
+
+
+                    <div class="col-sm-3 form-group">
+                      <label>Whatsaapp<sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="whatsaapp"
+                        formControlName="whatsaapp"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="col-sm-3 form-group">
+                      <label>Email<sup>*</sup></label>
+                      <input
+                        type="text"
+                        id="email"
+                        formControlName="email"
+                        class="form-control"
+                      />
+                    </div>
+
+                    
+
+                      <div class="col-sm-3 form-group">
+                        <label>Qualification<sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="qualification"
+                          formControlName="qualification"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-sm-3 form-group">
+                        <label>Experience <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="experience"
+                          formControlName="experience"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-sm-3 form-group">
+                        <label>Tutoring Grades <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="tutoring_grades"
+                          formControlName="tutoring_grades"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-sm-3 form-group">
+                        <label>	Subject <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="subjects"
+                          formControlName="subjects"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-sm-3 form-group">
+                        <label>	Owned Vehicle <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="owned_vehicle"
+                          formControlName="owned_vehicle"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-sm-3 form-group">
+                        <label>	Tutoring Hours <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="tutoring_hours"
+                          formControlName="tutoring_hours"
+                          class="form-control"
+                        />
+                      </div>
+
+                      
+
+
+                      <div class="col-sm-3 form-group">
+                        <label>	Preferred Location <sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="preferred_location"
+                          formControlName="preferred_location"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="col-sm-3 form-group">
+                        <label>	Referred By<sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="referred_by"
+                          formControlName="referred_by"
+                          class="form-control"
+                        />
+                      </div>
+
+                      </div>
+                     
+                    
+                      
+                      
+
+                  <h2>Notes by interviewer</h2>
+
+                  <div class="row">
+                    <div class="col-sm-3 form-group">
+                        <label>	Flexible working hours<sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="working_hours"
+                          formControlName="working_hours"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-3 form-group">
+                        <label>	Payment terms<sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="payment_terms"
+                          formControlName="payment_terms"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-3 form-group">
+                        <label>	Tutoring hours<sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="tutoring_hours_permission"
+                          formControlName="tutoring_hours_permission"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-3 form-group">
+                        <label>	Locations<sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="locations"
+                          formControlName="locations"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-3 form-group">
+                        <label>	Terms and Conditions<sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="t_and_c"
+                          formControlName="t_and_c"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-3 form-group">
+                        <label>	Documentations<sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="documentations"
+                          formControlName="documentations"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="col-sm-3 form-group">
+                        <label>	Asked for office visit if selected<sup>*</sup></label>
+                        <input
+                          type="text"
+                          id="asked"
+                          formControlName="asked"
+                          class="form-control"
+                        />
+                      </div>
+                    
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-10 form-group">
+                      <a routerLink="/telecaller-enquiries" class="btn btn-info" style="margin-right: 10px;">Back</a>
+                      <button type="submit" id="submitBtn" class="btn btn-submit" style="margin-left: 10px;">Update</button>&nbsp;
+                      <a style="cursor:pointer" (click)="updateStatus(userData.id,'2')" *ngIf="userData.status == 1" class="btn-round active"><img src="assets/images/right-tick.png"></a>
+                      <a style="cursor:pointer" (click)="updateStatus(userData.id,'1')" *ngIf="userData.status == 2" class="btn-round"><img src="assets/images/cross-icon.png"></a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

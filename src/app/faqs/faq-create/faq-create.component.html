@@ -1,0 +1,64 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Add New Faq</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="add-course-form newsletter-template-form">
+                                <form  [formGroup]="form" (ngSubmit)="createFaq(form.value)" >
+                                  <div class="row">
+                                    <div class="col-sm-8 form-group">
+                                      <label>Type <sup>*</sup></label>
+                                      <select type="text" id="type"  formControlName="type" class="form-control">
+                                        <option value="Student">Student</option>
+                                        <option value="Teacher">Teacher</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-sm-8 form-group">
+                                          <label>Category <sup>*</sup></label>
+                                          <select type="text" id="category"  formControlName="category" class="form-control">
+                                            <option value="">Select Category</option>
+                                            <option value="Conshuru FAQs">Conshuru FAQs</option>
+                                            <option value="Subscription And Billing">Subscription And Billing</option>
+                                            <option value="Technical Support">Technical Support</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-8 form-group">
+                                        <label>Question <sup>*</sup></label>
+                                        <input type="text" id="question"  formControlName="question" class="form-control">
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-sm-8 form-group">
+                                      <label>Answer <sup>*</sup></label>
+                                      <textarea type="text" id="answer"  formControlName="answer" class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <a routerLink="/faqs" class="btn btn-info">Back</a>
+                                            <button type="submit" id="submitBtn" class="btn btn-submit" style="margin-left: 10px;">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

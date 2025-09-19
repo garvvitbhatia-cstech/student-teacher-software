@@ -1,0 +1,15 @@
+.modal_tutors{ width: 1000px !important;}    
+.inner-details_1{
+    padding: 10px;
+    border-radius: 4px;
+    color: #fff;
+    min-height:45px; background-color: #0075c2;}
+.inner-details_1 h4{color: #fff; font-size: 14px;}
+.pay_status_success{background: #093;
+    color: #fff;
+    padding: 4px;
+    border-radius: 3px;}
+    .pay_status_fail{background: #f00;
+        color: #fff;
+        padding: 4px;
+        border-radius: 3px;}

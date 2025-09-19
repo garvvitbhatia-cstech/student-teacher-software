@@ -1,0 +1,465 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Booking Details | Pending: {{OrderData.pending_orders}} | Accept: {{OrderData.accepted_orders}}
+                        | Declined: {{OrderData.decline_orders}}</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row" style="margin-bottom:10px;">
+                        <div class="col-sm-3">
+                            <div class="inner-details">
+                                <h4>Order Details</h4>
+                                Invoice NO: {{OrderData.order_no}}<br>
+                                Txn ID: {{OrderData.transaction_id}}<br>
+                                Category: {{OrderData.class_category}}<br>
+                                Teacher Accept Status: {{OrderData.teacher_accept_status}}<br>
+                                Start Time: {{OrderData.start_time}}<br>
+                                End Time: {{OrderData.end_time}}<br>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="inner-details">
+                                <h4>Payment Details</h4>
+                                Payment Type: {{OrderData.payment_type}}<br>
+                                Payment Status: {{OrderData.payment_status}}<br>
+                                Amount: {{OrderData.total_amount}} INR<br>
+                                Teacher Amount: {{OrderData.teacher_amount}} INR<br>
+                                Commission({{OrderData.commission}}%): {{OrderData.company_commission}} INR<br>
+                                Discount: -{{OrderData.discount}} INR<br>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="inner-details">
+                                <h4>Package Details</h4>
+                                Title: {{packData.title}}<br>
+                                Price: {{OrderData.total_amount}} INR<br>
+                                Duration: {{OrderData.child_orders}} Days<br>
+                                Type: {{OrderData.class_type}}<br>
+                                DB ID: {{OrderData.package_id}}<br>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="inner-details">
+                                <h4>Teacher Details</h4>
+                                Name: {{teacherData.name}}<br>
+                                Email: {{teacherData.email}}<br>
+                                Phone: {{teacherData.phone}}<br>
+                                DB ID: {{teacherData.id}}
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="inner-details">
+                                <h4>Student Details</h4>
+                                Name: {{studentData.name}}<br>
+                                Email: {{studentData.email}}<br>
+                                Phone: {{studentData.phone}}<br>
+                                DB ID: {{studentData.id}}<br>
+                                {{ OrderData?.class_name }} {{ OrderData?.board_name }} {{ OrderData?.subject }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="inner-details_1">
+                                        <h4>Total Classes: {{no_of_tution_completed}}/{{OrderData.no_of_days}}</h4>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="inner-details_1">
+                                        <h4>Today Earning: {{one_day_earning}} INR</h4>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="inner-details_1">
+                                        <h4>Month Earning: {{monthly_earning}} INR</h4>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="inner-details_1">
+                                        <h4>Total Earning: {{total_earning}} INR</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2 style="font-size:17px">Student Location</h2>
+
+                            <iframe id="student_location" width="100%" height="400"></iframe>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 style="font-size:17px">Tutor Location</h2>
+                            <iframe id="tutor_location" width="100%" height="400"></iframe>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            payment URL: {{OrderData.payment_url}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="back-search">
+                                <div class="col-sm-1">
+                                    <label>Tutor Status</label>
+                                    <select id="tutor_accept_status" class="form-control">
+                                        <option value="Pending">Pending</option>
+                                        <option value="Accepted">Accepted</option>
+                                        <option value="Declined">Declined</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-1">
+                                    <label>Pay Status</label>
+                                    <select id="payment_status" class="form-control">
+                                        <option value="Pending">Pending</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-1">
+                                    <label>Tuition Status</label>
+                                    <select id="order_status" class="form-control">
+                                        <option value="Completed">Completed</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-sm-2">
+                                    <label>Start Time</label>
+                                    <input type="text" id="booking_start_time" class="form-control">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>End Time</label>
+                                    <input type="text" id="booking_end_time" class="form-control">
+                                </div>
+                               
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="back-search">
+                                
+                               
+                                
+                                <div class="col-sm-2">
+                                    <label>Commission Type</label>
+                                    <select id="commission_type" class="form-control">
+                                        <option
+                                            [attr.selected]="OrderData.commission_type == 'Percentage' ? true : null"
+                                            value="Percentage">Percentage</option>
+                                        <option [attr.selected]="OrderData.commission_type == 'Amount' ? true : null"
+                                            value="Amount">Amount</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>Commission</label>
+                                    <input id="commission" class="form-control">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>Booking Amount</label>
+                                    <input id="amount" class="form-control">
+                                </div>
+                                <div class="col-sm-1">
+                                    <label>Extra Classes</label>
+                                    <input id="extra_class" maxlength="2" value="0" class="form-control">
+                                </div>
+                                
+                                <div class="col-sm-2">
+                                    <label style="width: 100%;">&nbsp;</label>
+                                    <a (click)="updateData()" id="order_update_btn" style="margin-left:10px;"
+                                        class="btn btn-info">Update</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="back-search">
+                                <div class="col-sm-1">
+                                    <label style="width: 100%;">Order No:</label><input type="text" id="order_no"
+                                        style="width: 100%;" class="form-control filter_input">
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label style="width: 100%;">From:</label><input type="date" id="start_date"
+                                        style="width: 100%;" class="form-control filter_input">
+                                </div>
+                                <div class="col-sm-2"><label style="width: 100%;">To:</label><input type="date"
+                                        id="end_date" style="width: 100%;" class="form-control filter_input">
+                                </div>
+                                <div class="col-sm-7">
+                                    <label style="width: 100%;">&nbsp;</label><a (click)="searchData()"
+                                        id="searchStudentBtn" class="btn btn-info">Search</a>
+                                    <a (click)="reset()" style="margin-left:10px;" class="btn btn-info">Reset</a>
+                                    <a *ngIf="login_user_type == 'Admin' || export_p == 'YES'" style="margin-left:6px;"
+                                        (click)="exportCSV()" id="exportBtn" class="btn btn-info">Export</a>
+                                    <a routerLink="/orders" class="btn btn-warning" style="margin-left:10px;">Back</a>
+                                    <a data-toggle="modal" style="margin-left:6px;" data-target="#basicModal"
+                                        class="btn btn-success">Add More Session</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S No.</th>
+                                            <th width="130px">Order No.</th>
+                                            <th width="130px">Start/End Time</th>
+                                            <th width="130px">Cng Time</th>
+                                            <th width="130px">Teacher Accept Status</th>
+                                            <th width="130px">Tuition Status</th>
+                                            <th width="130px">Session OTP</th>
+                                            <th width="130px">Re-Schedule</th>
+                                            <th width="130px">Is Leave</th>
+                                            <th width="130px">Leave Reason</th>
+                                            <th width="130px">Class Adjust</th>
+                                            <th width="130px">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd" *ngIf="p == 1">
+                                            <td>1.</td>
+                                            <td>{{OrderData.order_no}}</td>
+                                            <td>{{OrderData.start_date_time}}<br>{{OrderData.end_date_time}}</td>
+                                            <td><input style="width:113px" *ngIf="OrderData?.is_past == 'No'"
+                                                    [id]="'new_time_'+OrderData.id"
+                                                    (change)="UpdateOrderStatus(OrderData.id,'new_time')"
+                                                    class="form-control" [value]="OrderData.start_time" type="time">
+                                            </td>
+                                            <td>
+
+                                                <select
+                                                    (change)="UpdateOrderStatus(OrderData.id,'teacher_accept_status')"
+                                                    [id]="'teacher_accept_status_'+OrderData.id" class="form-control">
+
+                                                    <option
+                                                        [attr.selected]="OrderData.teacher_accept_status == 'Accepted' ? true : null"
+                                                        value="Accepted">Accepted</option>
+
+                                                    <option
+                                                        [attr.selected]="OrderData.teacher_accept_status == 'Declined' ? true : null"
+                                                        value="Declined">Declined</option>
+                                                    <option
+                                                        [attr.selected]="OrderData.teacher_accept_status == 'Pending' ? true : null"
+                                                        value="Pending">Pending</option>
+
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select (change)="UpdateOrderStatus(OrderData.id,'order_status')"
+                                                    [id]="'order_status_'+OrderData.id" class="form-control">
+                                                    <option
+                                                        [attr.selected]="OrderData.order_status == 'Completed' ? true : null"
+                                                        value="Completed">Completed</option>
+                                                    <option
+                                                        [attr.selected]="OrderData.order_status == 'Pending' ? true : null"
+                                                        value="Pending">Pending</option>
+                                                    <option
+                                                        [attr.selected]="OrderData.order_status == 'Cancelled' ? true : null"
+                                                        value="Cancelled">Cancelled</option>
+
+                                                </select>
+                                            </td>
+                                            <td>{{OrderData.session_start_otp}} | {{OrderData.session_start_datetime}}
+                                            </td>
+                                            <td><span *ngIf="OrderData?.is_past == 'Yes'  && OrderData.re_schedule_type"
+                                                    class="cancel_tag">{{OrderData.re_schedule_type}}</span><select
+                                                    *ngIf="OrderData?.is_past == 'No'"
+                                                    (change)="UpdateOrderStatus(OrderData.id,'re_schedule_type')"
+                                                    [id]="'re_schedule_type_'+OrderData.id" class="form-control">
+                                                    <option value="No">--Select--</option>
+                                                    <option
+                                                        [attr.selected]="OrderData.re_schedule_type == 'Reschedule' ? true : null"
+                                                        value="Reschedule">Reschedule</option>
+                                                    <option
+                                                        [attr.selected]="OrderData.re_schedule_type == 'Leave' ? true : null"
+                                                        value="Leave">Leave</option>
+
+                                                </select></td>
+                                            <td><span style="color:#000" *ngIf="OrderData.is_leave == 1">Yes | Accepted
+                                                    By: {{OrderData.leave_accept_by}}</span><span style="color:#000"
+                                                    *ngIf="OrderData.is_leave == 0">No</span></td>
+                                            <td>{{OrderData.re_schedule_reason}}</td>
+                                            <td>
+
+                                                <select (change)="UpdateOrderStatus(OrderData.id,'class_adjust')"
+                                                    [id]="'class_adjust_'+OrderData.id" class="form-control">
+
+                                                    <option [attr.selected]="OrderData.class_adjust == 1 ? true : null"
+                                                        value="1">Yes</option>
+
+                                                    <option [attr.selected]="OrderData.class_adjust == 2 ? true : null"
+                                                        value="2">No</option>
+
+
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <a (click)="StartSession(OrderData.id)"
+                                                    *ngIf="!OrderData.session_start_time" class="btn btn-success">Start
+                                                    Session</a>
+                                                <span *ngIf="OrderData.session_start_time"
+                                                    style="color:#000">{{OrderData.session_start_time}}<br>{{OrderData.session_end_time}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr *ngFor="let order of orders | paginate: { itemsPerPage: 500, currentPage: p, totalItems: total } ; let i = index"
+                                            [attr.data-index]="i" class="odd">
+                                            <td *ngIf="p == 1">{{ i+2 }}.</td>
+                                            <td *ngIf="p > 1">{{ i+1 }}.</td>
+                                            <td>{{ order?.order_no }}</td>
+
+                                            <td>{{ order?.start_date_time }}<br>{{ order?.end_date_time }}</td>
+                                            <td><input *ngIf="order?.is_past == 'No'" style="width:113px"
+                                                    [id]="'new_time_'+order.id"
+                                                    (change)="UpdateOrderStatus(order.id,'new_time')"
+                                                    class="form-control" [value]="order.start_time" type="time"></td>
+                                            <td>
+                                                <select (change)="UpdateOrderStatus(order.id,'teacher_accept_status')"
+                                                    [id]="'teacher_accept_status_'+order.id" class="form-control">
+
+                                                    <option
+                                                        [attr.selected]="order.teacher_accept_status == 'Accepted' ? true : null"
+                                                        value="Accepted">Accepted</option>
+
+                                                    <option
+                                                        [attr.selected]="order.teacher_accept_status == 'Declined' ? true : null"
+                                                        value="Declined">Declined</option>
+                                                    <option
+                                                        [attr.selected]="order.teacher_accept_status == 'Pending' ? true : null"
+                                                        value="Pending">Pending</option>
+
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <!-- {{ order?.order_status }} -->
+                                                <select (change)="UpdateOrderStatus(order.id,'order_status')"
+                                                    [id]="'order_status_'+order.id" class="form-control">
+                                                    <option
+                                                        [attr.selected]="order.order_status == 'Completed' ? true : null"
+                                                        value="Completed">Completed</option>
+                                                    <option
+                                                        [attr.selected]="order.order_status == 'Pending' ? true : null"
+                                                        value="Pending">Pending</option>
+                                                    <option
+                                                        [attr.selected]="order.order_status == 'Cancelled' ? true : null"
+                                                        value="Cancelled">Cancelled</option>
+
+                                                </select>
+                                            </td>
+                                            <td>{{order.session_start_otp}} | {{order.session_start_datetime}}</td>
+                                            <td>
+                                                <span *ngIf="order?.is_past == 'Yes' && order.re_schedule_type"
+                                                    class="cancel_tag">{{order?.re_schedule_type}}</span>
+                                                <select *ngIf="order?.is_past == 'No'"
+                                                    (change)="UpdateOrderStatus(order.id,'re_schedule_type')"
+                                                    [id]="'re_schedule_type_'+order.id" class="form-control">
+                                                    <option value="No">--Select--</option>
+                                                    <option
+                                                        [attr.selected]="order.re_schedule_type == 'Reschedule' ? true : null"
+                                                        value="Reschedule">Reschedule</option>
+                                                    <option
+                                                        [attr.selected]="order.re_schedule_type == 'Leave' ? true : null"
+                                                        value="Leave">Leave</option>
+
+                                                </select>
+
+                                            </td>
+                                            <td><span style="color:#000" *ngIf="order.is_leave == 1">Yes | Accepted By:
+                                                    {{order.leave_accept_by}}</span><span style="color:#000"
+                                                    *ngIf="order.is_leave == 0">No</span></td>
+                                            <td>{{order.re_schedule_reason}}</td>
+                                            <td>
+                                                <select (change)="UpdateOrderStatus(order.id,'class_adjust')"
+                                                    [id]="'class_adjust_'+order.id" class="form-control">
+
+                                                    <option [attr.selected]="order.class_adjust == 1 ? true : null"
+                                                        value="1">Yes</option>
+
+                                                    <option [attr.selected]="order.class_adjust == 2 ? true : null"
+                                                        value="2">No</option>
+
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <a (click)="StartSession(order.id)" *ngIf="!order.session_start_time"
+                                                    class="btn btn-success">Start Session</a>
+                                                <span *ngIf="order.session_start_time"
+                                                    style="color:#000">{{order.session_start_time}}<br>{{order.session_end_time}}</span>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalHeading">Add More Session</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row">
+
+                            <div class="col-sm-4 form-group">
+                                <label>Session Date <sup>*</sup></label>
+                                <input type="datetime-local" id="booking_date_time" class="form-control">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+                    <a id="createBookingBtn" (click)="createMoreSession();" class="btn btn-primary">Submit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<app-footer></app-footer>

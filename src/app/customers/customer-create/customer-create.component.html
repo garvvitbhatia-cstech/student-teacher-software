@@ -1,0 +1,84 @@
+<app-header></app-header>>
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Add Student</h1>
+                </div>
+                <div class="panel-body">
+                    <form >
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="add-course-form newsletter-template-form">
+                                <div class="row">
+                                    <div class="col-sm-12 form-group">
+                                        <label>Name <sup>*</sup></label>
+                                        <input type="text" id="name"  formControlName="name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 form-group">
+                                        <label>Phone <sup>*</sup></label>
+                                        <input type="text" id="phone"  formControlName="phone" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-12 form-group">
+                                  <label>Profile Image</label>
+                                  <input type="file" id="profile_image" class="form-control" accept="image/png, image/jpeg">
+                              </div>
+                            </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12 form-group">
+                                        <label>Password <sup>*</sup></label>
+                                        <input type="password" id="password"  formControlName="password" class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="add-course-form newsletter-template-form">
+                                <div class="row">
+                                    <div class="col-sm-12 form-group">
+                                        <label>Email Address <sup>*</sup></label>
+                                        <input type="text" id="email"  formControlName="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 form-group">
+                                        <label>Address <sup>*</sup></label>
+                                        <input type="text" id="address"  formControlName="address" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 form-group">
+                                        <label>Zipcode <sup>*</sup></label>
+                                        <input type="text" id="zipcode"  formControlName="zipcode" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-12 form-group">
+                                      <label>Confirm Password <sup>*</sup></label>
+                                      <input type="password" id="confirm_password"  formControlName="confirm_password" class="form-control">
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <a routerLink="/students" class="btn btn-info">Back</a>
+                            <a id="submitBtn" (click)="createUser()" style="margin-left:10px;" class="btn btn-info">Submit</a>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

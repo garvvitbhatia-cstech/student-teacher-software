@@ -1,0 +1,185 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Find a Tutor</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="back-search">
+                                <input type="text" id="f_name" placeholder="Search By Name" class="form-control filter_input" >
+                                <select class="form-control filter_input" id="f_class">
+                                    <option value="">Select Class</option>
+                                    <option *ngFor="let class of classes" value="{{ class.id }}">{{ class.title }}</option>
+                                    </select>
+                                    <select class="form-control filter_input" id="f_subjects">
+                                    <option value="">Select Subject</option>
+                                    <option *ngFor="let subject of subjects" value="{{ subject.id }}">{{ subject.title }}</option>
+                                    </select>
+                                    <select class="form-control filter_input" id="f_board">
+                                    <option value="">Select Board</option>
+                                    <option *ngFor="let board of boards" value="{{ board.id }}">{{ board.title }}</option>
+                                    </select>
+                                    <input type="text" id="f_location" placeholder="Preferred Area" class="form-control filter_input" >
+                                    <select id="f_gender" style="width:6%" class="form-control filter_input">
+                                        <option value="">Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                    <input style="width:8%" type="text" id="f_latutude" value="23.17" placeholder="Latitude" class="form-control filter_input" >
+                                    <input style="width:8%" type="text" id="f_longitude" value="77.42" placeholder="Longitude" class="form-control filter_input" >
+                                    <select style="width:6%" class="form-control filter_input" id="f_range">
+                                        <option value="">Range</option>
+                                        <option value="1">1 KM</option>
+                                        <option value="2">2 KM</option>
+                                        <option value="3">3 KM</option>
+                                        <option value="4">4 KM</option>
+                                        <option value="5">5 KM</option>
+                                        <option value="6">6 KM</option>
+                                        <option value="7">7 KM</option>
+                                        <option value="8">8 KM</option>
+                                        <option value="9">9 KM</option>
+                                        <option value="10">10 KM</option>
+                                    </select>
+                                <a (click)="searchData()" style="margin-right:10px;" id="searchStudentBtn" class="btn btn-info">Search</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S.No</th>
+                                            <th width="200px">Name</th>
+                                            <th width="200px">Phone</th>
+                                            <th width="283px">Preferred Area</th>
+                                            <th width="283px">Rating</th>
+                                            <th width="283px">Home Distance</th>
+                                            <th width="283px">Current Distance</th>
+                                            <th width="283px">Address</th>
+                                            <th width="283px">Experence</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let devtask of task let i = index"class="odd">
+                                            <td>{{ i+1 }}.</td>
+                                            <td><a data-toggle="modal" data-target="#basicModal" (click)="setData(devtask)">{{ devtask?.name }}</a></td>
+                                            
+                                            <td>{{ devtask?.phone }}</td>
+                                            <td>{{ devtask?.prefered_location }} | {{ devtask?.prefered_location_2 }} | {{ devtask?.prefered_location_3 }} | {{ devtask?.prefered_location_4 }} | {{ devtask?.prefered_location_5 }}</td>
+                                            <td>{{ devtask?.rating }}</td>
+                                            <td>{{ devtask?.distance }} KM</td>
+                                            <td>{{ devtask?.distance_current }} KM</td>
+                                            <td>{{ devtask?.address }}</td>
+                                            <td>{{ devtask?.teaching_exp }} Year</td>
+                                         
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">{{teacherData?.name}} ({{teacherData?.rating}} Rating)</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <img src="{{teacherData?.profile_image}}" width="100">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Subject:</b> {{teacherData?.subject}}<br><br>
+                        <b>Class:</b> {{teacherData?.class}}<br><br>
+                        <b>Board:</b> {{teacherData?.board}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Email:</b> {{teacherData?.email}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Phone:</b> {{teacherData?.phone}}
+                    </div>
+                    
+                    <div class="col-sm-12 form-group">
+                        <b>Address:</b> {{teacherData?.address}}, {{teacherData?.zipcode}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>City:</b> {{teacherData?.city}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Gender:</b> {{teacherData?.gender}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Qualification:</b> {{teacherData?.qualification}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Experience:</b> {{teacherData?.teaching_exp}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Aadhar No:</b> {{teacherData?.aadhar_no}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>PAN No:</b> {{teacherData?.pan_no}}
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <b>Preferred Area 1:</b> {{teacherData?.prefered_location}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_2" class="col-sm-12 form-group">
+                        <b>Preferred Area 2:</b> {{teacherData?.prefered_location_2}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_3" class="col-sm-12 form-group">
+                        <b>Preferred Area 3:</b> {{teacherData?.prefered_location_3}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_4" class="col-sm-12 form-group">
+                        <b>Preferred Area 4:</b> {{teacherData?.prefered_location_4}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_5" class="col-sm-12 form-group">
+                        <b>Preferred Area 5:</b> {{teacherData?.prefered_location_5}}
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+</main>
+
+<app-footer></app-footer>

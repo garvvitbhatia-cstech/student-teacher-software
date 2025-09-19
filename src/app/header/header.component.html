@@ -1,0 +1,26 @@
+<div class="top-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 text-left" style="padding-top:6px;">
+                <div class="logo">
+                    <a routerLink="/dashboard"><img src="https://manjhee.com/images/manjhee-logo.png"></a>
+                </div>
+                <div class="sidebar-toggle-box">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+            </div>
+            <div style="position:relative; padding-top: 10px;" class="col-sm-6 text-right">
+                <div class="btn-group">
+                    <a (click)="logout()" data-toggle="modal" class="btn btn-info">Logout</a>
+                </div>
+                <div *ngIf="userType == 'Admin' || userType == 'Super Admin'" class="notification_box">
+                <div *ngFor="let invoice of invoices" class="single_notifiation">{{ invoice.username }} <span class="notification_due_date">Due On: {{ invoice.due_date }}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

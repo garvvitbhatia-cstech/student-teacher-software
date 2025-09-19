@@ -1,0 +1,193 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Add Student Package</h1>
+                </div>
+                <div class="panel-body">
+                    <!-- {{this.childrens | json}}  -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="add-course-form newsletter-template-form">
+                                <form  [formGroup]="form" (ngSubmit)="createPackage(form.value)" >
+                                  <div class="row">
+                                      <div class="col-sm-4 form-group">
+                                          <label>Classes <sup>*</sup></label>
+                                          <select class="form-control multi-select-input" style="height: 150px;" formControlName="class_id" multiple>
+                                          <option *ngFor="let class of classes" value="{{ class.id }}">{{ class.title }}</option>
+                                          </select>
+                                      </div>
+                                      <div class="col-sm-4 form-group">
+                                        <label>Subjects <sup>*</sup></label>
+                                        <select class="form-control multi-select-input" id="subjects" style="height: 150px !important" formControlName="subject" multiple>
+                                        <option *ngFor="let subject of subjects" value="{{ subject.id }}">{{ subject.title }}</option>
+                                        </select>
+                                    </div>
+                                      <div class="col-sm-4 form-group">
+                                        <label>Board <sup>*</sup></label>
+                                        <select class="form-control " id="board" formControlName="board" style="height: 150px !important"
+                                        
+                                        multiple>
+                                          <option *ngFor="let board of boards" value="{{ board.id }}">{{ board.title }}</option>
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-3 form-group">
+                                        <label>Package Category <sup>*</sup></label>
+                                        <select type="text" id="category"  formControlName="category" class="form-control">
+                                            <option value="">Select Package Category</option>
+                                            <option value="At Home">At Home</option>
+                                            <option value="Video Lecture">Video Lecture</option>
+                                            <option value="Contents">Contents</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-sm-3 form-group">
+                                        <label>Package Type <sup>*</sup></label>
+                                        <select type="text" id="type"  formControlName="type" class="form-control">
+                                            <option value="">Select Package Type</option>
+                                            <option value="Hourly">Hourly</option>
+                                            <option value="Questions">Questions</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-sm-3 form-group">
+                                        <label>Title <sup>*</sup></label>
+                                        <input type="text" id="heading"  formControlName="heading" class="form-control">
+                                      </div>
+                                        <div class="col-sm-3 form-group">
+                                            <label>Title Mobile<sup>*</sup></label>
+                                            <input type="text" id="title"  formControlName="title" class="form-control">
+                                          </div>
+                                      
+                                  </div>
+                                <div class="row">
+                                  <div class="col-sm-3 form-group">
+                                    <label>Duration (In days)<sup>*</sup></label>
+                                    <select type="text" id="duration_days"  formControlName="duration_days" class="form-control">
+                                        <option value="1">1 Day</option>
+                                        <option value="2">2 Days</option>
+                                        <option value="5">5 Days</option>
+                                        <option value="10">10 Days</option>
+                                        <option value="12">12 Days</option>
+                                        <option value="15">15 Days</option>
+                                        <option value="20">20 Days</option>
+                                        <option value="24">24 Days</option>
+                                        <option value="25">25 Days</option>
+                                        <option value="30">30 Days</option>
+                                        <option value="45">45 Days</option>
+                                        <option value="60">60 Days</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-sm-3 form-group">
+                                    <label>Coaching Hours (In Hours)<sup>*</sup></label>
+                                    <select type="text" id="tution_hour"  formControlName="tution_hour" class="form-control">
+                                        <option value="1">1 Hour</option>
+                                        <option value="2">2 Hours</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-sm-1 form-group">
+                                    <label>MRP <sup>*</sup></label>
+                                    <input type="text" id="mrp"  formControlName="mrp" class="form-control">
+                                  </div>
+                                      <div class="col-sm-1 form-group">
+                                        <label>Listing Price <sup>*</sup></label>
+                                        <input type="text" id="price"  formControlName="price" class="form-control">
+                                      </div>
+                                      <div class="col-sm-1 form-group">
+                                        <label>Discount</label>
+                                        <input type="text" id="discount"  formControlName="discount" class="form-control">
+                                      </div>
+                                      <div class="col-sm-1 form-group">
+                                        <label>Discount Type</label>
+                                        <select type="text" id="discount_type"  formControlName="discount_type" class="form-control">
+                                          <option value="Amount">Amount</option>
+                                          <option value="Percent">Percent</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-sm-1 form-group" style="padding-top:29px">
+                                        <a (click)="addMore()" class="btn btn-info">+Add More</a>
+                                      </div>
+                                </div>
+
+                                <div class="row" *ngFor="let singleRow of this.childrens; let i=index">
+                                  <div class="col-sm-2 form-group">
+                                    <label>Title Mobile</label>
+                                    <input type="text" id="title" (keyup)="setTitle(i)" [id]="'title_'+i" class="form-control">
+                                  </div>
+                                  <div class="col-sm-2 form-group">
+                                    <label>Duration (In days)<sup>*</sup></label>
+                                    <select type="text" [id]="'duration_days_'+i" (change)="setDuration(i)"  class="form-control">
+                                      <option value="">Select</option>
+                                        <option value="1">1 Day</option>
+                                        <option value="2">2 Days</option>
+                                        <option value="5">5 Days</option>
+                                        <option value="10">10 Days</option>
+                                        <option value="12">12 Days</option>
+                                        <option value="15">15 Days</option>
+                                        <option value="20">20 Days</option>
+                                        <option value="24">24 Days</option>
+                                        <option value="25">25 Days</option>
+                                        <option value="30">30 Days</option>
+                                        <option value="45">45 Days</option>
+                                        <option value="60">60 Days</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-sm-2 form-group">
+                                    <label>Coaching Hours (In Hours)<sup>*</sup></label>
+                                    <select type="text" [id]="'tution_hour_'+i" (change)="setHour(i)" class="form-control">
+                                      <option value="">Select</option>
+                                        <option value="1">1 Hour</option>
+                                        <option value="2">2 Hours</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-sm-1 form-group">
+                                    <label>MRP <sup>*</sup></label>
+                                    <input type="text" [id]="'mrp_'+i" (keyup)="setMrp(i)"  class="form-control">
+                                  </div>
+                                      <div class="col-sm-1 form-group">
+                                        <label>Price <sup>*</sup></label>
+                                        <input type="text" id="price" [id]="'price_'+i" (keyup)="setPrice(i)" class="form-control">
+                                      </div>
+                                      <div class="col-sm-1 form-group">
+                                        <label>Discount</label>
+                                        <input type="text" [id]="'discount_'+i" (keyup)="setDiscount(i)"  class="form-control">
+                                      </div>
+                                      <div class="col-sm-1 form-group">
+                                        <label>Discount Type</label>
+                                        <select type="text" [id]="'discount_type_'+i" (change)="setDiscountType(i)" class="form-control">
+                                          <option  value="Amount">Amount</option>
+                                          <option  value="Percent">Percent</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-sm-1 form-group" style="padding-top:29px">
+                                        <a (click)="removeRow(i)" class="btn btn-danger">-Remove</a>
+                                      </div>
+                                </div>
+                                  
+                                <div class="row">
+                                  <div class="col-sm-12 form-group">
+                                    <label>Description</label>
+                                    <textarea type="text" id="description"  formControlName="description" class="form-control"></textarea>
+                                  </div>
+                              </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <a routerLink="/student-packages" class="btn btn-info">Back</a>
+                                            <button type="submit" id="submitBtn" class="btn btn-submit" style="margin-left: 10px;">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

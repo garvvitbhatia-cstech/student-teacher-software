@@ -1,0 +1,312 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <!-- <section class="inner-wrapper" *ngIf="userID > 0">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Wallet Balance: 0</h4>
+                    </div>
+                </div> -
+                <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Total Classes:{{totalClasses}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Today Earning: {{oneDayEarning}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Month Earning:  {{monthlyEarning}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1">
+                        <h4>Total Earning:  {{totalEarning}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1" style="background-color:#093">
+                        <h4>Payout Done:  {{total_pay}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="inner-details_1" style="background-color:darkgoldenrod">
+                        <h4>Payout Pending:  {{pending_pay}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 >Payable Amount</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="back-search">
+                                <input type="text" id="title" placeholder="Search By Title" class="form-control filter_input" >
+                                
+                                <a (click)="searchData()" style="margin-right:10px;" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-right:10px;" class="btn btn-info">Reset</a>
+
+                                <a data-toggle="modal" data-target="#bulkPayNowModal" *ngIf="selectedTeachers.length > 0" style="margin-right:10px;" class="btn btn-warning">Bulk Pay</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">DB ID</th>
+                                            <th width="62px"></th>
+                                            <th width="283px">Teacher</th>
+                                            <th width="283px">Payable Amt</th>
+                                            <th width="283px">Payout</th>
+                                            <th width="283px">Remaining Balance</th>
+                                            <th width="283px">Beneficiary</th>
+                                            <th width="283px">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let board of payouts; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ i+1 }}</td>
+                                            <td><input *ngIf="board.teacher_data.beneficiary_id" type="checkbox" (change)="onChangeDays($event,board.teacher_id,board.total_teacher_remaining_amt)" [id]="'payable_'+board.teacher_id" value="{{board.teacher_id}}"></td>
+                                            <td><a style="cursor:pointer" data-toggle="modal" data-target="#basicModal" (click)="setTeacherData(board.teacher_data)">{{ board.teacher_data.name }}</a></td>
+                                            <td><a style="cursor:pointer" data-toggle="modal" data-target="#payableModal" (click)="setOrderData(board.teacher_orders)">{{ board?.total_teacher_amt }} INR</a></td>
+                                            <td><a style="cursor:pointer" data-toggle="modal" data-target="#payoutModal" (click)="setPayoutData(board.teacher_payouts)">{{ board?.total_teacher_payout_amt }} INR</a></td>
+                                            <td>{{ board?.total_teacher_remaining_structure }} INR</td>
+                                            <td><a (click)="createBeneficiary(board.teacher_id)" *ngIf="!board.teacher_data.beneficiary_id" id="c_beni" style="background-color: #000;" class="btn btn-warning">Create Beneficiary</a><span style="color:#000" *ngIf="board.teacher_data.beneficiary_id">Beneficiary Created</span></td>
+                                            <td><a *ngIf="board?.total_teacher_remaining_structure > 0" style="cursor:pointer" (click)="setAmountForPay(board)" data-toggle="modal" data-target="#payNowModal" class="btn btn-info">Pay Now</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="bulkPayNowModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">Bulk Pay</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                  <div class="row">
+                      
+                      <div class="col-sm-12 form-group" style="text-align:center;font-size: 25px;">
+                          {{totalTeacherRemainAmt.toFixed(2)}} INR
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+                <a id="submitBtn" (click)="finalBulkPay()" class="btn btn-primary">Pay Now</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    <div class="modal fade" id="payNowModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">Pay {{ rowData?.total_teacher_amt }} to {{ rowData?.teacher_data?.name }}</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                  <div class="row">
+                      
+                      <div class="col-sm-12 form-group">
+                          <label>Amount <sup>*</sup></label>
+                          <input type="text" id="payable_amount" class="form-control">
+                          <input type="hidden" id="row_id" value="0">
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+                <a id="submitBtn" (click)="finalPay()" class="btn btn-primary">Pay Now</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    <div class="modal fade" id="payoutModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">Payout Data</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding: 0px 15px;height: 400px;overflow-y: auto;">
+                    <div class="table-responsive widthFixed">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Pay Type</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr *ngFor="let payout of payoutData;">
+                                <td>{{payout?.pay_type}}</td>
+                                <td>{{payout?.amount}} INR</td>
+                                <td>{{payout?.pay_date}}</td>
+                                <td>{{payout?.remark}}</td>
+                            </tr></tbody>
+                            
+                        </table>
+                        </div>
+                    
+
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="modal fade" id="payableModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">Payable Data</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding: 0px 15px;height: 400px;overflow-y: auto;">
+                    <div class="table-responsive widthFixed">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Order No</th>
+                                    <th>Student Details</th>
+                                    <th>Order Amt</th>
+                                    <th>Commission</th>
+                                    <th>Teacher Amt</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr *ngFor="let order of orderData;">
+                                <td>#{{order?.order_no}}</td>
+                                <td>{{order?.student_name}}<br>{{order?.student_email}}<br>{{order?.student_phone}}</td>
+                                <td>{{order?.one_day_order_amt}} INR</td>
+                                <td>{{order?.one_day_commission}} INR</td>
+                                <td>{{order?.one_day_teacher_amt}} INR</td>
+                            </tr></tbody>
+                            
+                        </table>
+                        </div>
+                    
+
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">{{teacherData?.name}} ({{teacherData?.rating}} Rating)</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <img src="{{teacherData?.profile_image}}" width="100">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Subject:</b> {{teacherData?.subject}}<br><br>
+                        <b>Class:</b> {{teacherData?.class}}<br><br>
+                        <b>Board:</b> {{teacherData?.board}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Email:</b> {{teacherData?.email}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Phone:</b> {{teacherData?.phone}}
+                    </div>
+                    
+                    <div class="col-sm-12 form-group">
+                        <b>Address:</b> {{teacherData?.address}}, {{teacherData?.zipcode}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>City:</b> {{teacherData?.city}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Gender:</b> {{teacherData?.gender}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Qualification:</b> {{teacherData?.qualification}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Experience:</b> {{teacherData?.teaching_exp}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>Aadhar No:</b> {{teacherData?.aadhar_no}}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <b>PAN No:</b> {{teacherData?.pan_no}}
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <b>Preferred Area 1:</b> {{teacherData?.prefered_location}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_2" class="col-sm-12 form-group">
+                        <b>Preferred Area 2:</b> {{teacherData?.prefered_location_2}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_3" class="col-sm-12 form-group">
+                        <b>Preferred Area 3:</b> {{teacherData?.prefered_location_3}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_4" class="col-sm-12 form-group">
+                        <b>Preferred Area 4:</b> {{teacherData?.prefered_location_4}}
+                    </div>
+                    <div *ngIf="teacherData?.prefered_location_5" class="col-sm-12 form-group">
+                        <b>Preferred Area 5:</b> {{teacherData?.prefered_location_5}}
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</main>
+
+<app-footer></app-footer>

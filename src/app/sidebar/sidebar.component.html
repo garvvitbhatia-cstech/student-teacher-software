@@ -1,0 +1,32 @@
+<aside class="sidebar">
+    <div class="sidebar-inner">
+         <div class="admin-info">
+            <figure><img src="assets/images/avatar-pic.jpg"></figure>
+            <span style="font-size:20px;">{{login_user_name}}</span>
+            <small style="font-size:18px;">{{login_user_email}}</small>
+        </div> 
+        <nav class="sidebar-navbar">
+            <ul class="vertical-nav" id="nav-accordion">
+                <li [ngClass]="{'active' : pageName == '/dashboard'}" class="active"><a routerLink="/dashboard"><div class="icon-div"><img src="assets/images/dashboard-icon.png"></div>Dashboard</a></li>
+                <li [ngClass]="{'active' : pageName == '/profile'}" ><a routerLink="/profile"><div class="icon-div"><img src="assets/images/profile-icon.png"></div>Profile</a></li>
+                <li [ngClass]="{'active' : pageName == '/change-password'}" ><a routerLink="/change-password"><div class="icon-div"><img src="assets/images/lock-icon.png"></div>Change Password</a></li>
+                <!-- <li [ngClass]="{'active' : pageName == '/students'}" ><a routerLink="/students"><div class="icon-div"><i class="fa fa-users"></i></div>Students</a></li>
+                <li [ngClass]="{'active' : pageName == '/teachers'}" ><a routerLink="/teachers"><div class="icon-div"><i class="fa fa-user"></i></div>Teachers</a></li>
+                <li [ngClass]="{'active' : pageName == '/classes'}" ><a routerLink="/classes"><div class="icon-div"><i class="fa fa-th-list"></i></div>Classes</a></li>
+                <li [ngClass]="{'active' : pageName == '/subjects'}" ><a routerLink="/subjects"><div class="icon-div"><i class="fa fa-book"></i></div>Subjects</a></li>
+                <li [ngClass]="{'active' : pageName == '/board'}" ><a routerLink="/board"><div class="icon-div"><i class="fa fa-graduation-cap"></i></div>Board</a></li> -->
+            </ul>
+            <ul *ngIf="login_user_type=='Admin'" class="vertical-nav" id="nav-accordion">
+                <li  *ngFor="let manager of managers">
+                    <a routerLink="{{manager.url}}"
+                      ><div class="icon-div"><i class="fa fa-th-list"></i></div>{{manager.title}}</a
+                    >
+                  </li>
+
+                <li><a style="cursor:pointer" (click)="logout()"><div class="icon-div"><img src="assets/images/logout-icon.png"></div>Logout</a></li>
+
+
+            </ul>
+        </nav>
+    </div>
+</aside>

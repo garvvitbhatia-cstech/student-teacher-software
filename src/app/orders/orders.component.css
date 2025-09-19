@@ -1,0 +1,23 @@
+.success_tag{color: #fff;
+background: #093;
+padding: 3px 5px;
+border-radius: 4px;}
+
+.pending_tag{color: #fff;
+background:blue;
+padding: 3px 5px;
+border-radius: 4px;}
+
+.cancel_tag{color: #fff;
+background:red;
+padding: 3px 5px;
+border-radius: 4px;}
+
+.modal_tutors{ width: 1000px !important;}    
+.saperate{    background: #03BFCB ;
+    margin: 0px 14px;
+    padding: 7px; color: #fff;}   
+    .filter_input {
+        width: 8%;
+        margin-right: 10px;
+    } 

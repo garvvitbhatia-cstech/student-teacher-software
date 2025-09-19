@@ -1,0 +1,222 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+  <app-sidebar></app-sidebar>
+  <section class="inner-wrapper">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 id="heading">View Tutor Registration | <span *ngIf="userData.full_name">{{ userData?.full_name }}</span><span *ngIf="userData.first_name">{{ userData?.first_name }} {{ userData?.middle_name }} {{ userData?.last_name }}</span> | {{userData.aadhar_dob}}</h1>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              
+              <div class="add-course-form newsletter-template-form">
+                <form  [formGroup]="form" (ngSubmit)="updateSubject(form.value)" >
+                  <div class="row">
+                    <div class="col-sm-4">
+                    MA/BD/{{userData.id}}<br>
+                    Tutor ID:{{userData.token}}<br>
+                    Registration Date:{{userData.reg_date}}<br>
+                    Applied City: {{userData.apply_city}}
+                    </div>
+                    <div class="col-sm-4">
+                      <a href="{{userData.profile_pic}}" target="_blank"><img width="200px" src="{{userData.profile_pic}}"></a>
+                    </div>
+                    <div class="col-sm-4"><img src="data:image/png;base64,{{userData.aadhar_org_photo}}"></div>
+                  </div>
+                      <h2>Personal Info</h2>
+                      <div class="row">
+
+                        <div class="col-sm-12">
+                            <table class="table table-bordered">
+                              <tr>
+                                <td width="20%"><b>Name:</b></td>
+                                <td width="80%">{{userData.first_name}} {{userData.middle_name}} {{userData.last_name}}</td>
+                              </tr>
+                              <tr>
+                                <td><b>Gender:</b></td>
+                                <td>{{userData.gender}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Father’s Name:</b></td>
+                                <td >{{userData.father_name}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Mother Name:</b></td>
+                                <td >{{userData.mother_name}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Husband Name:</b></td>
+                                <td >{{userData.husband_name}}</td>
+                              </tr>
+                              
+                              <tr>
+                                <td ><b>Mobile Number:</b></td>
+                                <td >{{userData.contact}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>E mail ID:</b></td>
+                                <td >{{userData.email}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Current Address:</b></td>
+                                <td >{{userData.current_address}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Permanent Address:</b></td>
+                                <td >{{userData.permanent_address}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Qualification:</b></td>
+                                <td >{{userData.qualification}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Vehicle Owned:</b></td>
+                                <td >{{userData.owned_vehicle}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Experience:</b></td>
+                                <td >{{userData.experience}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Tutoring Class:</b></td>
+                                <td >{{userData.class_titles}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Subjects:</b></td>
+                                <td >{{userData.subject_titles}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Board:</b></td>
+                                <td >{{userData.board_titles}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Tutoring hours:</b></td>
+                                <td >{{userData.tutoring_hours}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Preferred Area 1:</b></td>
+                                <td >{{userData.prefered_location}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Preferred Area 2:</b></td>
+                                <td >{{userData.prefered_location_2}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Preferred Area 3:</b></td>
+                                <td >{{userData.prefered_location_3}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Preferred Area 4:</b></td>
+                                <td >{{userData.prefered_location_4}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Preferred Area 5:</b></td>
+                                <td >{{userData.prefered_location_5}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Bank Name:</b></td>
+                                <td >{{userData.bank_name}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Account Number:</b></td>
+                                <td >{{userData.account_number}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>IFSC Code:</b></td>
+                                <td >{{userData.ifsc}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>Branch:</b></td>
+                                <td >{{userData.branch}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>UPI ID:</b></td>
+                                <td >{{userData.upi_id}}</td>
+                              </tr>
+                              
+                              <tr>
+                                <td ><b>Aadhar Number:</b></td>
+                                <td >{{userData.aadhaar}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>DOB:</b></td>
+                                <td >{{userData.aadhar_dob}}</td>
+                              </tr>
+                              <tr>
+                                <td ><b>ADDRESS:</b></td>
+                                <td >--</td>
+                              </tr>
+                              <tr>
+                                <td ><b>FATHERS NAME:</b></td>
+                                <td >--</td>
+                              </tr>
+                              <tr>
+                                <td ><b>MOBILE NUMBER:</b></td>
+                                <td >--</td>
+                              </tr>
+                              <tr>
+                                <td ><b>{{userData.document_type}}:</b></td>
+                                <td >{{userData.pan_number}}</td>
+                              </tr>
+                              
+                              
+                            </table>
+                            <br>
+                            <a href="{{userData.document_proof}}" target="_blank"><img width="200px" src="{{userData.document_proof}}"></a>
+                            <a href="{{userData.account_statement}}" target="_blank"><img width="200px" src="{{userData.account_statement}}"></a><br>
+                            <br>
+                            I, hereby declare that all the information produced above are true and complete to the best of my knowledge and belief. <br> <br>
+
+                            <a href="{{userData.sign}}" target="_blank"><img width="200px" src="{{userData.sign}}"></a>
+
+                            <br> <br>
+                          </div>
+
+                          
+                          
+                         
+                      </div>
+                    
+                      
+                      
+                  
+
+                  
+
+                  <div class="row">
+                    
+                    <div *ngIf="userData.email_varified == 1 && (login_user_type == 'Admin' || review_p == 'YES')" class="col-sm-2 form-group">
+                      <select id="document_verify"
+                      formControlName="document_verify"
+                      class="form-control">
+                      <option value="2">Document Submit</option>
+                        <option value="1">Yes</option>
+                        <option value="2">No</option>
+                      </select>
+                    </div>
+                    <!-- <div *ngIf="login_user_type == 'Admin' || review_p == 'YES'" class="col-sm-1 form-group">
+                      <a style="cursor:pointer" (click)="updateStatus(userData.id,'2')" *ngIf="userData.status == 1" class="btn-round active"><img src="assets/images/right-tick.png"></a>
+                      <a style="cursor:pointer" (click)="updateStatus(userData.id,'1')" *ngIf="userData.status == 2" class="btn-round"><img src="assets/images/cross-icon.png"></a> 
+                    </div> -->
+                    <div *ngIf="userData.email_varified == 1 && (login_user_type == 'Admin' || review_p == 'YES')" class="col-sm-2 form-group">
+                      <button type="submit" id="submitBtn" class="btn btn-submit">Update</button>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                      <a routerLink="/tutor-registrations" class="btn btn-info">Back</a> 
+
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

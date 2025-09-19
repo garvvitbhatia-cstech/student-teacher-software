@@ -1,0 +1,93 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Create Invoice</h1>
+                </div>
+                <div class="panel-body">
+                    <form  [formGroup]="form" (ngSubmit)="createInvoice(form.value)" >
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="add-course-form newsletter-template-form">
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Bill Form <sup>*</sup></label>
+                                            <input type="text" id="bill_from"  formControlName="bill_from" class="form-control">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Due Date <sup>*</sup></label>
+                                            <input type="text" id="due_date" bsDatepicker  formControlName="due_date" class="form-control">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Pay To <sup>*</sup></label>
+                                            <input type="text" id="pay_to"  formControlName="pay_to" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Pickup City <sup>*</sup></label>
+                                            <input type="text" id="pickup_city"  formControlName="pickup_city" class="form-control">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="add-course-form newsletter-template-form">
+                                <div class="row">
+                                    <div class="col-sm-10 form-group">
+                                        <label>Bill To <sup>*</sup></label>
+                                        <input type="text" id="bill_to"  formControlName="bill_to" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10 form-group">
+                                        <label>Amount <sup>*</sup></label>
+                                        <input type="text" id="amount"  formControlName="amount" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10 form-group">
+                                        <label>Customer <sup>*</sup></label>
+                                        <select id="customer_id" class="form-control">
+                                            <option value="">Select Customer</option>
+                                            <option *ngFor="let customer of customers" value="{{customer?.id}}">{{customer?.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10 form-group">
+                                        <label>Delivery City <sup>*</sup></label>
+                                        <input type="text" id="delivery_city"  formControlName="delivery_city" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-10 form-group">
+                                    <a routerLink="/invoices" class="btn btn-info">Back</a>
+                                    <button type="submit" id="submitBtn" class="btn btn-submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

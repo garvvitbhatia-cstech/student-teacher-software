@@ -1,0 +1,15 @@
+.filter_input {
+    width: 10%;
+    margin-right: 10px;
+}
+@media (max-width: 767px){
+    .filter_input {
+        width: 47%;
+        margin-right: 10px;
+        margin-bottom: 9px;
+    }
+    .back-search .btn-info {
+        padding: 9px 15px 8px;
+        margin-bottom: 10px;
+    }
+}

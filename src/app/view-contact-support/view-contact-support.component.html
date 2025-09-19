@@ -1,0 +1,65 @@
+<app-header></app-header>>
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Token: {{contactData.token}}</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="add-course-form newsletter-template-form">
+                                <form  [formGroup]="form" (ngSubmit)="updateProfile(form.value)">
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Type: {{contactData.type}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Name: {{contactData.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Phone: {{contactData.phone}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Email: {{contactData.email}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Subject: {{contactData.subject}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Message: {{contactData.message}}</label>
+                                        </div>
+                                    </div>
+                                    <h2>Reply</h2>
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <textarea id="reply" formControlName="reply" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <button type="submit" id="updateBtn" class="btn btn-submit">Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

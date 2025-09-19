@@ -1,0 +1,41 @@
+<app-header></app-header>>
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>{{person?.type}} Profile</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="add-course-form newsletter-template-form">
+                                <form  [formGroup]="form" (ngSubmit)="updateProfile(form.value)">
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Name <sup>*</sup></label>
+                                            <input type="text" formControlName="name" id="name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <label>Email Address</label>
+                                            <input type="text"  formControlName="email" id="email" readonly class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 form-group">
+                                            <button type="submit" id="updateBtn" class="btn btn-submit">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

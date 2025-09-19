@@ -1,0 +1,578 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+  <app-sidebar></app-sidebar>
+  <section *ngIf="login_user_type=='Account'" class="inner-wrapper">
+    <div class="col-sm-12">
+      <div class="panel panel-default adminst-des">
+        <div class="panel-body">
+          
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Settings</h2>
+                <div class="adminiService">
+                  <ul>
+                    <li>
+                      <a routerLink="/change-password"
+                        ><figure>
+                          <img src="assets/images/hear-about-us.png" />
+                        </figure>
+                        Change Password</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/profile"
+                        ><figure>
+                          <img src="assets/images/super-admin.png" />
+                        </figure>
+                        Profile</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Managers</h2>
+                <div class="adminiService">
+                  <ul>
+                    <li *ngFor="let manager of managers">
+                      <a routerLink="{{manager.url}}"
+                        ><figure>
+                          <img src="assets/images/{{manager.icon}}" />
+                        </figure>
+                        {{manager.title}} <span *ngIf="manager.title == 'Activities'" class="reminder">{{activity_count}}</span><span *ngIf="manager.title == 'VC Interview Data'" class="reminder">{{vc_count}}</span></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="login_user_type=='Admin'" class="inner-wrapper">
+    <div class="col-sm-12">
+      <div class="panel panel-default adminst-des">
+        
+          <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Settings</h2>
+                <div class="adminiService">
+                  <ul>
+                    <li>
+                      <a routerLink="/change-password"
+                        ><figure>
+                          <img src="assets/images/115716_lock_unlock_password_secure_security_icon.png" />
+                        </figure>
+                        Change Password</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/profile"
+                        ><figure>
+                          <img src="assets/images/4092564_profile_about_mobile ui_user_icon.png" />
+                        </figure>
+                        Profile</a
+                      >
+                    </li>
+                     <li>
+                      <a routerLink="/settings"
+                        ><figure>
+                          <img src="assets/images/2849830_multimedia_options_setting_settings_gear_icon.png" />
+                        </figure>
+                        Site Configuration</a
+                      >
+                    </li>
+                    <!-- <li>
+                      <a routerLink="/partners"
+                        ><figure>
+                          <img src="assets/images/3289557_clan_group_partners_peers_people_icon.png" />
+                        </figure>
+                        Partners</a
+                      >
+                    </li> -->
+                    <li>
+                      <a routerLink="/accounts">
+                        <figure>
+                          <img src="assets/images/2588770_account_add_profile_seo_user_icon.png" />
+                        </figure>Accounts
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Reports</h2>
+                <div class="adminiService">
+                  <ul>
+                    <li>
+                      <a routerLink="/progress-report">
+                        <figure>
+                          <img src="assets/images/2124299_app_document_report_essential_icon.png" />
+                        </figure>
+                        Progress Report</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/settlement-report">
+                        <figure>
+                          <img src="assets/images/2124302_document_app_essential_icon.png" />
+                        </figure>
+                        Settlement Report</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/revenue-modal">
+                        <figure>
+                          <img src="assets/images/10219193_profit_chart_growth_increase_income_icon.png" />
+                        </figure>
+                        Revenue Dashboard</a
+                      >
+                    </li>
+                   
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>CRM</h2>
+                <div class="adminiService">
+                  <ul>
+                    <li>
+                      <a routerLink="/tutor-enquiries">
+                        <figure><img src="assets/images/3586362_checklist_document_list_paper_icon.png" /></figure>
+                        Telecalling List</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/tasks">
+                        <figure><img src="assets/images/5803966_checklist_clipboard_task_todo_icon.png" /></figure>
+                        Tasks</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/activities">
+                        <figure><img src="assets/images/9876804_costumer service_customer_helpdesk_user_support_icon.png" /></figure>
+                        Activities <span class="reminder">{{activity_count}}</span></a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/vc-interview-data">
+                        <figure><img src="assets/images/9020489_video_call_webcam_meeting_online meeting_icon.png" /></figure>
+                        Scheduled VC <span class="reminder">{{vc_count}}</span></a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/doc-followup-data">
+                        <figure><img src="assets/images/2674051_object_web_document_essential_online_icon.png" /></figure>
+                        Doc Followup Data</a
+                      >
+                    </li>
+                  
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Payment</h2>
+                <div class="adminiService">
+                  <ul>
+                    
+                    <li>
+                      <a routerLink="/payouts/0">
+                        <figure>
+                          <img src="assets/images/4781810_coin_currency_dollar_finance_money_icon.png" />
+                        </figure>
+                        Payouts</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/payable">
+                        <figure>
+                          <img src="assets/images/4781810_coin_currency_dollar_finance_money_icon.png" />
+                        </figure>
+                        Payable</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Managers</h2>
+                <div class="adminiService">
+                  <ul>
+                    <li>
+                      <a routerLink="/students">
+                        <figure><img src="assets/images/4092564_profile_about_mobile ui_user_icon.png" /></figure>
+                        Students</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/teachers">
+                        <figure>
+                          <img src="assets/images/309041_users_group_people_icon.png" />
+                        </figure>
+                        Teachers</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/tutor-registrations">
+                        <figure><img src="assets/images/6599578_e-learning_education_evaluation_exam_online_icon.png" /></figure>
+                        Tutor Registration</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/telecaller-enquiries">
+                        <figure><img src="assets/images/7107782_training_employment_meeting_interview_recruitment_icon.png" /></figure>
+                        Interview Module</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/home-locations">
+                        <figure><img src="assets/images/7107782_training_employment_meeting_interview_recruitment_icon.png" /></figure>
+                        Home Locations</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Admin Master</h2>
+                <div class="adminiService">
+                  <ul>
+                    
+                    <li>
+                      <a routerLink="/classes">
+                        <figure>
+                          <img src="assets/images/11807236_coding_classes_education_programming_online_icon.png" />
+                        </figure>
+                        Classes</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/subjects">
+                        <figure><img src="assets/images/4295549_topic_issue_matter_point_question_icon.png" /></figure>
+                        Subjects</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/board">
+                        <figure>
+                          <img src="assets/images/2124180_app_board_essential_ui_icon.png" />
+                        </figure>
+                        Board</a
+                      >
+                    </li>
+                    <!-- <li>
+                      <a routerLink="/contents"
+                        ><figure>
+                          <img src="assets/images/courses.png" />
+                        </figure>
+                        Subject Content</a
+                      >
+                    </li> -->
+                    <li>
+                      <a routerLink="/coupon-codes">
+                        <figure>
+                          <img src="assets/images/9025791_gift_icon.png" />
+                        </figure>
+                        Coupon Codes</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/static-pages">
+                        <figure>
+                          <img src="assets/images/9042660_multiple_pages_icon.png" />
+                        </figure>
+                        Static Pages</a
+                      >
+                    </li>
+                    
+                    
+                    <!-- <li>
+                      <a routerLink="/incentives">
+                        <figure>
+                          <img src="assets/images/course-badge.png" />
+                        </figure>
+                        Incentives</a
+                      >
+                    </li> -->
+                    <li>
+                      <a routerLink="/franchise">
+                        <figure>
+                          <img src="assets/images/7977451_community_sustainability_environment_ecology_urban_icon.png" />
+                        </figure>
+                        Cities</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/student-packages">
+                        <figure>
+                          <img src="assets/images/7898514_plan_business_finance_office_marketing_icon.png" />
+                        </figure>
+                        Student Packages</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/states">
+                        <figure>
+                          <img src="assets/images/3586361_location_map_navigation_pointer_icon.png" />
+                        </figure>
+                        States</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/faqs">
+                        <figure>
+                          <img src="assets/images/5402385_faq_help_info_question_doubt_icon.png" />
+                        </figure>
+                        FAQs</a
+                      >
+                    </li>
+                   
+                    
+                    
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Allotment</h2>
+                <div class="adminiService">
+                  <ul>
+                    <li>
+                      <a routerLink="/find-a-tutor">
+                        <figure>
+                          <img src="assets/images/10758957_user_search_icon.png" />
+                        </figure>
+                        Find a Tutor</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/find-package">
+                        <figure>
+                          <img src="assets/images/4552611_check_listing_loupe_magnifier_magnifying glass_icon.png" />
+                        </figure>
+                        Find Package</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/orders">
+                        <figure>
+                          <img src="assets/images/3615744_barcode_delivery_order_package_parcel_icon.png" />
+                        </figure>
+                        Orders Management</a
+                      >
+                    </li>
+                    <!-- <li>
+                      <a routerLink="/teacher-packages">
+                        <figure>
+                          <img src="assets/images/experts-articles.png" />
+                        </figure>
+                        Teacher Packages</a
+                      >
+                    </li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Communication</h2>
+                <div class="adminiService">
+                  <ul>
+                    <li>
+                      <a routerLink="/campaigns">
+                        <figure><img src="assets/images/2528063_campaign_marketing_megaphone_optimization_promotion_icon.png" /></figure>
+                        Campaigns</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/dev-task">
+                        <figure>
+                          <img src="assets/images/1737368_comment_description_outline_problem_task_icon.png" />
+                        </figure>
+                        Developer Task</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Payments</h2>
+                <div class="adminiService">
+                  <ul>
+                   
+                     <li>
+                      <a routerLink="/teacher-packages">
+                        <figure>
+                          <img src="assets/images/experts-articles.png" />
+                        </figure>
+                        Teacher Packages</a
+                      >
+                    </li> 
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Reviews & Contacts</h2>
+                <div class="adminiService">
+                  <ul>
+                    <!-- <li>
+                      <a routerLink="/questionnaires">
+                        <figure>
+                          <img src="assets/images/quiz-question.png" />
+                        </figure>
+                        Questionnaires</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/sliders">
+                        <figure>
+                          <img src="assets/images/application-banner.png" />
+                        </figure>
+                        Sliders</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/videos">
+                        <figure>
+                          <img src="assets/images/intro-video.png" />
+                        </figure>
+                        Videos</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/testimonials">
+                        <figure>
+                          <img src="assets/images/sections.png" />
+                        </figure>
+                        Testimonials</a
+                      >
+                    </li> -->
+                    
+                    <li>
+                      <a routerLink="/reviews">
+                        <figure>
+                          <img src="assets/images/3209377_chat_comment_review_speech_text_icon.png" />
+                        </figure>
+                        Reviews</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/contact-support">
+                        <figure>
+                          <img src="assets/images/172475_headset_support_icon.png" />
+                        </figure>
+                        Contact Support</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>CRM-Student</h2>
+                <div class="adminiService">
+                  <ul>
+                    
+                   
+                     <li>
+                      <a routerLink="/student-enquiries">
+                        <figure><img src="assets/images/3586362_checklist_document_list_paper_icon.png" /></figure>
+                        Student Enquiry List</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/student-task">
+                        <figure><img src="assets/images/5803966_checklist_clipboard_task_todo_icon.png" /></figure>
+                        Student Tasks</a
+                      >
+                    </li>
+                    <li>
+                      <a routerLink="/student-activities">
+                        <figure><img src="assets/images/9876804_costumer service_customer_helpdesk_user_support_icon.png" /></figure>
+                        Student Activities</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-sm-12">
+              <div class="administrator_services">
+                <h2>Enquiries</h2>
+                <div class="adminiService">
+                  <ul>
+                    
+                   
+                     <li>
+                      <a routerLink="/appointments">
+                        <figure><img src="assets/images/experts.png" /></figure>
+                        Appointments</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>
+
+<!-- Logout confirmation -->
+<div
+  id="submitConfirmation"
+  class="modal submitConfirmation fade"
+  role="dialog"
+  data-backdrop="static"
+  data-keyboard="false"
+>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Logout Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to logout?</p>
+        <div class="button-group">
+          <a href="#" data-dismiss="modal" class="btn btn-yes">Yes</a>
+          <a href="#" data-dismiss="modal" class="btn btn-no">No</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

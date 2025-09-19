@@ -1,0 +1,131 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Invoices</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <div class="back-search">
+                                    <input type="text" id="f_bill_from" placeholder="Search By Bill From" class="form-control filter_input" >
+                                    <input type="text" id="f_bill_to" placeholder="Search By Bill To" class="form-control filter_input" >
+                                    <input type="text" id="f_bill_to" placeholder="Search By Pay To" class="form-control filter_input" >
+                                    <input type="text" id="f_bill_to" placeholder="Search By Pickup City" class="form-control filter_input" >
+                                    <a (click)="searchData()" id="searchBtn" class="btn btn-info">Search</a>
+                                    <a (click)="reset()" id="searchBtn" style="margin-left:10px;" class="btn btn-info">Reset</a>
+                                
+                            </div>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            <div class="btn-group right-btn">
+                                <a *ngIf="userType == 'Carrier'" routerLink="/add-invoice" class="btn btn-info">Create Invoice</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>S No.</th>
+                                            <th *ngIf="userType == 'Admin' || userType == 'Super Admin'">Carrier/Branch</th>
+                                            <th>Invoice No.</th>
+                                            <th>Invoice Date</th>
+                                            <th>Due Date</th>
+                                            <th>Amount Due</th>
+                                            <th *ngIf="userType == 'Admin' || userType == 'Super Admin'">Amount Paid</th>
+                                            <th *ngIf="userType == 'Admin' || userType == 'Super Admin'">Accoounting Date</th>
+                                            <th *ngIf="userType == 'Admin' || userType == 'Super Admin'">Manage Docs</th>
+                                            <th>Status</th>
+                                            <th *ngIf="userType == 'Carrier'">Remark</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let invoice of invoices | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }" class="odd">
+                                            <td>{{ invoice.id }}.</td>
+                                            <td *ngIf="userType == 'Admin' || userType == 'Super Admin'">{{ invoice.username }}</td>
+                                            <td>#{{ invoice.invoice_no }}</td>
+                                            <td>{{ invoice.created_at }}</td>
+                                            <td>{{ invoice.due_date }}</td>
+
+                                            <td>${{ invoice.due_amt }}</td>
+                                            <td *ngIf="userType == 'Admin' || userType == 'Super Admin'">${{ invoice.paid_amt }}</td>
+
+                                            <td *ngIf="userType == 'Admin' || userType == 'Super Admin'">{{ invoice.accouting_date }}</td>
+                                            
+                                            <td *ngIf="userType == 'Admin' || userType == 'Super Admin'"><a *ngIf="invoice.status == 1" [routerLink]="['/invoice-document/', invoice.id  ]">Manage</a></td>
+                                            
+                                            <td>
+                                                <div *ngIf="userType == 'Carrier'">
+                                                    <span class="approve_text" *ngIf="invoice.status == 1">Approved</span>
+                                                    <span class="reject_text" *ngIf="invoice.status == 2">Reject</span>
+                                                    <span class="pending_text" *ngIf="invoice.status == 3">Pending</span>
+                                                </div>
+                                                <div *ngIf="(userType == 'Admin' || userType == 'Super Admin')">
+                                                    <select #selectElem (change)="updateStatus(invoice.id,selectElem.value)" class="form-control">
+                                                        <option [selected]="invoice.status == 1" [value]="1">Approved</option>
+                                                        <option [selected]="invoice.status == 2" [value]="2">Reject</option>
+                                                        <option [selected]="invoice.status == 3" [value]="3">Pending</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td *ngIf="userType == 'Carrier'"><span *ngIf="invoice.status == 2">{{ invoice.reason }}</span></td>
+                                            <td>
+                                                <a [routerLink]="['/edit-invoice/', invoice.id  ]" *ngIf="userType == 'Carrier' && invoice.status != 1" class="action-btn"><span><img src="assets/images/edit-icon.png"></span></a>
+                                                <a *ngIf="invoice.status != 1" style="cursor:pointer" (click)="deleteUser(invoice.id)" class="action-btn"><span><img src="assets/images/delete-icon.png"></span></a>
+                                            </td>
+                                        </tr> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div id="reasonPopUp" class="modal submitConfirmation fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">		
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">	
+                <h4 class="modal-title">Reason</h4>
+            </div>
+            <div class="modal-body">
+                <div class="reason_div">
+                    <textarea id="reasonText" class="form-control"></textarea>
+                    <input type="hidden" id="invoiceID">
+                </div>
+                <div class="button-group">
+                    <a (click)="saveReason();" id="reasonBtn" class="btn btn-yes">Submit</a>
+                    <a  style="cursor: pointer;" (click)="closePopup();" class="btn btn-no">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-footer></app-footer>

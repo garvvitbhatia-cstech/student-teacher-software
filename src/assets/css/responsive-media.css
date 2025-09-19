@@ -1,0 +1,329 @@
+/*============= Responsive media queries for WDO =============*/
+
+@media (min-width: 768px){
+    
+}
+@media (min-width: 1240px){
+    
+}
+@media (min-width: 1300px){
+    
+}
+@media (min-width: 1400px){
+	
+}
+@media(min-width: 1500px){
+	
+}
+@media(min-width: 1600px){
+
+}
+
+@media (max-width: 1810px){
+
+}
+
+@media (max-width: 1699px){
+    .widthFixed .table th:nth-child(2){width: 56px;}
+    .widthFixed .table th:last-child{width: 125px;}
+    .table th{padding: 8px !important;}
+    .banner-box {width: 30%;vertical-align: top;}
+    .banner-box h4{min-height: 38px;}
+}
+@media (max-width: 1599px){
+    .widthFixed .table  tr > td, .widthFixed .table  tr > th{white-space: nowrap;}
+    .widthFixed  .detailBox > td{white-space: normal !important;}
+
+    .add-course-form .popup-btn-group .btn + .btn {margin-left: 8px;}
+}
+@media (max-width: 1499px){   
+    /*====== add course page ======*/
+    .add-course-form .col-sm-10.form-group {width: 100%;float: left;}
+    .add-course-form .col-sm-5.form-group {width: 50%;float: left;}
+    .add-course-form .popup-btn-group .btn + .btn {margin-left: 4px;}
+}
+@media (max-width: 1450px){
+    
+}
+@media (max-width: 1400px){
+   
+}
+@media (max-width: 1399px){
+   
+}
+@media (max-width: 1310px){
+    
+}
+@media (max-width: 1299px){
+	.btn-group.right-btn .btn-info:last-child {margin-left: 10px;}
+	.login_in_detail h1 {font-size: 24px;}
+	.login-btn {font-size: 18px;height: 42px;margin-bottom: 20px;}
+	.head-logo {padding-bottom: 24px;}
+	.login_in_detail {padding: 30px 40px 30px;}
+	.login_in_detail form.form_field { padding: 25px 0 0px;}
+	.form_field .form-control{font-size: 16px;height: 50px;margin-bottom: 25px;}
+	.form_field label {font-size: 16px;}
+    .head-logo a >img {width: 370px;}
+
+    /*====== add course page ======*/    
+    .add-course-form .col-sm-10.form-group .col-sm-9 {width: 70%;}
+    .add-course-form .col-sm-10.form-group .col-sm-1 {width: 13.333333%;}
+    .newsletter-template-form form .col-sm-5.form-group {width: 100%;}
+
+}
+@media (max-width: 1250px){
+   
+}
+
+@media (max-width: 1199px){
+    .sidebar{display: none;padding-top: 0;}
+    .page-wrapper{padding-left: 0;margin-bottom: 0;}
+    .top-bar{padding: 6px 0;}
+    .inner-wrapper{padding: 15px 0;}
+    .main_footer{padding-left: 0;}
+    .sidebar-toggle-box{display: block;}
+    .sidebar.openMenu {display: block;z-index: 999999;}
+    .admin-info{padding: 15px 30px;}
+    .panel-default>.panel-heading h1, .panel-default>.panel-heading h2, .panel-default>.panel-heading h3, .panel-default>.panel-heading h4, .panel-default>.panel-heading h5, .panel-default>.panel-heading h6{font-size: 20px;}
+    .detailBox h2, .detailTabs-content h3{font-size: 20px;}
+    .detailTabs li + li {margin-top: 0;}
+    .generalInformation .btn-info {margin-right: 10px;}
+    .sidebar-navbar{padding-right: 0}
+    .sidebar-navbar .vertical-nav li a{padding: 12px;}
+    .dcjq-parent-li ul.sub li a {padding: 8px 12px;}
+    .top-bar .btn-group .btn-info{padding: 8px 11px 3px;}
+    .btn-info, .generalInformation .btn-info{padding: 10px 16px 6px;}
+    .generalInformation .btn-info{padding: 10px 11px 6px;}
+    .buttons .btn-warning {padding: 12px 20px 8px;}
+    .back-search .btn-info {padding: 11px 30px 5px;}
+    .sidebar-navbar .vertical-nav li > a:hover, .sidebar-navbar .vertical-nav li.active > a{border-radius: 0;}
+
+    .navbar-toggle{display: block;position: relative;right: 0;top: -2px;}
+    button.navbar-toggle.closeMenu {padding: 0;top: 8px;}
+
+    .top-bar .col-sm-6.text-right {display: none;}
+    .top-bar .col-sm-6.text-left{width: 100%;}
+    .sidebar-toggle-box {float: right;}
+    
+    li.logoutBtn {display: block;background: #f69225;}
+    li.logoutBtn a{border: none !important;}
+    
+	/*===== 31-oct-18 =======*/
+	.adminst-des .panel-heading h1{font-size:20px;}
+	.adminiService ul li a {font-size: 13px; }
+	
+	/*=====login =====*/
+	.login_in_detail {padding: 20px 30px 20px;}
+	.head-logo { padding-bottom: 20px;}
+	.login_in_detail form.form_field { padding: 25px 0 0px;}
+	.form_field .form-control{ height: 42px;
+    margin-bottom: 25px;
+    font-size: 14px;}
+	.login_in_detail h1 { font-size: 22px;}
+	.login-btn {font-size: 16px;padding: 0px 32px;height: 40px;margin-bottom: 20px;}
+	.form_field p {font-size: 14px;}
+	.form_field .round-checkbox .checkmark, .round-radio .checkmark{top: 2px;}
+    .head-logo a>img {width: 370px;}
+    
+    /*====== add course page ======*/
+    .add-course-form .col-sm-10.form-group {width: 100%;float: left;}
+    .add-course-form .col-sm-5.form-group {width: 50%;float: left;}
+    .btn.btn-info.addmoreFields {padding: 14px 16px 10px;}
+    .btn-submit{padding: 10px 30px 6px;}
+	
+}
+@media (max-width: 991px){
+    .btn-info, .generalInformation .btn-info{padding: 10px 11px 6px;font-size: 13px;}
+    .generalInformation .btn-info{padding: 10px 11px 6px;}
+    .top-bar .btn-group .btn-info{padding: 8px 11px 3px;font-size: 13px;}
+    .top-bar .btn-group .btn-info:last-child {margin-left: 5px;}
+    .time-info{float: left;margin-right: 0px;}
+    .time-info p {font-size: 12px;}
+    .buttons .btn-warning {margin-left: 15px;padding: 11px 11px 5px;font-size: 13px;}
+    .buttons .btn-round {width: 34px;height: 34px;line-height: 32px;}
+    .detailBox td {padding: 15px 20px !important;}
+    .detailTabs-content{padding: 20px;}
+	
+   /*===== 31-oct-18 =======*/
+	.adminiService ul li figure>img { width: 60px;}
+	.adminiService ul li figure{    height: 46px;}
+	.adminiService ul li:hover figure img{transform: translateY(-46px);-webkit-transform: translateY(-46px);-moz-transform: translateY(-46px);
+	-ms-transform: translateY(-46px);}
+	.administrator_services h2 {font-size: 15px;}
+	.search_down .form-control{width: 265px;}
+	.search_down .btn-search{font-size: 13px;padding: 9px 16px;}
+	
+	/*=====login =====*/
+	.login_in_detail{max-width: 450px;}
+	.head-logo a>img {width: 270px;}
+	.login_in_detail h1 {font-size: 20px;}
+	.login-btn {font-size: 16px; margin-bottom: 20px;height: 40px;}
+	.form_field label {font-size: 16px;}
+	.form_field .form-control{font-size: 16px;height: 40px;}
+    .form_field p {font-size: 16px;}
+    
+    /*====== add course page =====*/
+    .add-course-form .col-sm-10.form-group .col-sm-9 {width: 70%;}
+    .add-course-form .col-sm-10.form-group .col-sm-1 {width: 13.333333%;}
+
+    /*====== newsletter template page =====*/
+    .body_content .modal-dialog {width: 760px;max-width: 93%;}
+    .newsletter-template-form form .col-sm-5.form-group{width: 100%;}
+}
+
+@media (min-height: 375px) and (max-width: 812px) and (orientation: landscape) {
+    
+}
+
+@media (max-width: 767px ){
+    .col-sm-6.text-right {width: 100%;float: left;text-align: center;position: static;}
+    .time-info {position: absolute;top: 0;width: 100%;text-align: center;left: 0;background: #666}
+    .top-bar .btn-group {position: absolute;top: 35px;right: 70px;}
+    .logo{margin-top: 6px;}
+    .sidebar-toggle-box {float: right;}
+    .page-wrapper{padding-top: 48px;}
+    .panel-default>.panel-heading{padding: 15px 15px 0;}
+    .panel-body {padding: 10px 15px;}
+    .panel-default>.panel-heading h1, .panel-default>.panel-heading h2, .panel-default>.panel-heading h3, .panel-default>.panel-heading h4, .panel-default>.panel-heading h5, .panel-default>.panel-heading h6 {font-size: 18px;}
+    .col-sm-4.text-right {width: 100%;float: left;margin-top: 10px;}
+    .copyright p{font-size: 14px;}
+    .detailBox h2, .detailTabs-content h3 {font-size: 16px;}
+    .detailBox .col-sm-2 {width: 16.66666667%;float: left;}
+    .detailBox .col-sm-10 {width: 83.33333333%;float: left;}
+    .tab-detail{padding-left: 10px;}
+    /* .generalInformation p{font-size: 14px;} */
+    .tab-detail h4 {font-size: 16px;margin-bottom: 10px;}
+    .tab-detail p {margin-bottom: 10px;}
+
+    .navbar-toggle {position: absolute;right: 15px;padding: 0;top: 7px;}
+    button.navbar-toggle.closeMenu {padding: 0;top: 17px;}
+	
+	/*===== 31-oct-18 =======*/
+	.adminst-des .panel-heading h1 {font-size: 18px;}
+	.adminst-des .col-sm-6 { width: 50%; float: left;}
+	.search-right{padding-top: 15px;}
+    .adminiService ul li{padding: 5px 5px 0;width: 20%;}
+    .adminiService ul li:nth-of-type(5n){border-right: none;}
+	.adminiService ul li a {font-size: 11px; }
+	.search_down .form-control {width: 220px;margin-right: 10px;}
+	.searchDown-main .col-sm-7 {width: 70%;float:left;}
+    .searchDown-main .col-sm-5 {width: 28%;float: right;}
+    
+	/*=====login =====*/
+	.form_field .form-control {font-size: 13px;margin-bottom: 15px;}
+	.login_in_detail form.form_field {padding: 15px 0 0px;}
+	.form_field label {font-size: 13px;}
+	.form_field p { font-size: 13px;}
+	.form_field .round-checkbox .checkmark, .round-radio .checkmark{top: 2px;}
+	.login-btn {font-size: 13px;font-weight: 500;margin-bottom: 15px;height: 33px;padding: 0px 26px;}
+	.form_field .col-sm-6 {width: 50%; float: left;}
+	.login_in_detail { padding: 20px 20px 20px;}
+    .login_in_detail h1 {font-size: 18px;}
+    
+    /*====== add course page ======*/
+    .add-course-form .col-sm-5.form-group {width: 100%;}
+    .add-course-form .col-sm-4.form-group {width: 50%;float: left;}
+    .add-course-form .language-item{width: 100%;padding: 9px 15px;}
+    .add-course-form .col-sm-10.form-group .col-sm-9 {width: 63%;float: left;}
+    .add-course-form .col-sm-10.form-group .col-sm-1 {width: 16%;float: left;padding: 0 5px;}
+    .add-course-form form h2 {font-size: 14px;padding: 8px 10px;margin: 5px 0 15px;}
+    .add-course-form .col-sm-10.form-group .col-sm-10 {width: 81%;}
+    .add-course-form form label{font-size: 13px;}
+    .btn.btn-info.addmoreFields {padding: 12px 16px 8px;}
+
+    .add-course-form form .form-control{height: 38px;}
+    .field-with-text-limits .text-limit{padding: 7px 6px;}
+
+    /*====== newsletter template ======*/
+    .header_content  .modal-dialog, .footer_content  .modal-dialog{max-width: 93%;}
+    .header_content .modal-body, .body_content .modal-body, .footer_content .modal-body{padding: 15px;}
+    .page-wrapper{min-height: auto;}
+    .btn-submit{padding: 10px 30px 6px;}
+    .btn-info, .generalInformation .btn-info {padding: 11px 11px 5px;}
+    #successMesage .modal-dialog{width: 80%;}
+}
+
+@media (max-height: 800px){
+    
+}
+@media (max-width: 700px){
+    .search_down .form-control {width: 200px;}
+}
+
+@media (max-width: 680px){
+    
+}
+@media (max-width: 650px){
+    .searchDown-main .col-sm-7 {width: 78%;}
+	.searchDown-main .col-sm-5 {width: 22%;float: right;}
+	.head-logo {padding-bottom: 10px;}
+	.login_in_detail {padding: 15px 20px 15px;}
+}
+@media (max-width: 600px){
+  
+}
+
+@media (max-width: 599px){
+    
+}
+
+@media (max-width: 500px){
+    .page-wrapper{padding-top: 42px;}
+    .logo {margin-top: 0;width: 100%;text-align: left;}
+    .top-bar .btn-group {top: auto;position: static;margin-top: 7px;}
+    /* .back-search .btn-info {padding: 9px 15px 3px;position: absolute;top: -33px;right: 15px;} */
+    .back-search .btn-info {padding: 9px 15px 3px;float: left;}
+    .back-search .searchBox{margin-top: 10px; margin-left: 0;}
+    .pagination{text-align: center;width: 100%;}
+    .back-search .searchBox{max-width: 100%;}
+    .pagination ul li{margin: 5px 0;}
+    .pagination ul li a{padding: 4px 8px;}
+    .btn-info, .generalInformation .btn-info {padding: 11px 11px 5px;font-size: 13px;}
+    .generalInformation .btn-info {padding: 10px 11px 7px;}
+    .sidebar-toggle-box{margin-top: 0;}
+    button.navbar-toggle{top: 2px;}
+    button.navbar-toggle.closeMenu {top: 12px;}
+	.search_down .form-control {width: 150px;}
+	.login_detail .container {width: 100%;}
+	.login_in_detail {max-width: 100%;}
+    .login_detail {width: 100%;padding: 0 15px;}
+    
+    /*====== add course page ======*/
+    .add-course-form .col-sm-10.form-group .col-sm-9 {width: 100%;float: left;margin-bottom: 10px;}
+    .add-course-form .col-sm-10.form-group .col-sm-1 {width: 44%;float: left;padding: 0 15px;}
+    .add-course-form .col-sm-4.form-group{width: 100%;}
+    .add-course-form .col-sm-10.form-group .col-sm-10 {width: 100%;margin-bottom: 10px;float: left;}
+    .back-search.back-button-bottom .btn.btn-info {position: static;float: left;}
+
+    /*====== newsletter template page =====*/
+    .add-course-form .popup-btn-group .btn + .btn {margin-left: 0;margin-bottom: 15px;vertical-align: top;}
+    .add-course-form .popup-btn-group .btn {margin-right: 5px;}
+}
+@media (max-width: 480px){
+	.adminiService ul li {width: 49%;margin: 15px 0;}
+	.adminiService ul li:nth-child(2n){border:none;}
+	.administrator_services h2 {font-size: 14px;padding: 10px 20px;}
+	.search-right {float: left;width: 100%;padding-left: 15px;padding-right: 15px;}
+	.adminst-des .col-sm-6 {width: 100%;float: none;}
+	.searchDown-main .col-sm-7 {width: 100%;float: left;}
+	.searchDown-main .col-sm-5 {width: 100%;float: left;text-align: left;margin-top: 10px;}
+	.search_down .form-control {width: 228px;margin-bottom: 10px;}
+	.head-logo a>img {width: auto;max-width: 100%;}
+	.searchDown-main {padding: 12px 15px;}
+    .submitConfirmation .modal-body{padding: 15px;}
+    .btn-yes, .btn-no{width: 100px;margin: 0 5px;}
+}
+@media (max-width: 390px){
+   .search_down .form-control {width: 100%;margin-bottom:10px;}
+}
+@media (max-width: 360px){
+    .logo img {max-height: 30px;max-width: 240px;}    
+    button.navbar-toggle {top: 0;}
+    button.navbar-toggle.closeMenu {top: 10px;}
+    .page-wrapper {padding-top: 37px;}
+    .modal-dialog{width: 93%;}
+}
+@media (max-width: 359px){
+    .sidebar{width: 260px;}	
+    .panel-default>.panel-heading h1, .panel-default>.panel-heading h2, .panel-default>.panel-heading h3, .panel-default>.panel-heading h4, .panel-default>.panel-heading h5, .panel-default>.panel-heading h6{font-size: 16px;}
+}

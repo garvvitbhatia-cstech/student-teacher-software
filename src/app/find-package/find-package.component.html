@@ -1,0 +1,156 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Packages</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="back-search">
+                                <input type="text" id="f_title" placeholder="Search By Title" class="form-control filter_input" >
+                                <select class="form-control filter_input" id="f_class">
+                                <option value="">Select Class</option>
+                                <option *ngFor="let class of classes" value="{{ class.id }}">{{ class.title }}</option>
+                                </select>
+                                <select class="form-control filter_input" id="f_subjects">
+                                <option value="">Select Subject</option>
+                                <option *ngFor="let subject of subjects" value="{{ subject.id }}">{{ subject.title }}</option>
+                                </select>
+                                <select class="form-control filter_input" id="f_board">
+                                <option value="">Select Board</option>
+                                <option *ngFor="let board of boards" value="{{ board.id }}">{{ board.title }}</option>
+                                </select>
+                                <select type="text" id="f_duration_days"  class="form-control filter_input">
+                                    <option value="">Duration</option>
+                                    <option value="1">1 Day</option>
+                                    <option value="2">2 Days</option>
+                                    <option value="5">5 Days</option>
+                                    <option value="10">10 Days</option>
+                                    <option value="15">15 Days</option>
+                                    <option value="20">20 Days</option>
+                                    <option value="25">25 Days</option>
+                                    <option value="30">30 Days</option>
+                                    <option value="45">45 Days</option>
+                                    <option value="60">60 Days</option>
+                                </select>
+                                <a (click)="searchData()" style="margin-right:10px;" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-right:10px;" class="btn btn-info">Reset</a>
+                              
+                                
+                            </div>
+                        </div>
+                       
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S No.</th>
+                                            <th width="183px">Category</th>
+                                            <th width="183px">Type</th>
+                                            <th width="283px">Title</th>
+                                            <th width="283px">Title Mobile</th>
+                                            <th width="183px">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let package of packages | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" class="odd">
+                                            <td>{{ i+1 }}.</td>
+                                            <td>{{ package?.category }} | {{ package?.child }}</td>
+                                            <td>{{package.tution_hour}} {{ package?.type }} | {{package.duration_days}} Days</td>
+                                            <td><a data-toggle="modal" (click)="setData(package)" data-target="#basicModal" style="color:blue; cursor:pointer">{{ package?.heading }}</a></td>
+                                            <td>{{ package?.title }}</td>
+                                            <td>
+                                                <div><span style="color:#000">{{package.duration_days}} Day {{package.tution_hour}} Hour - {{ package?.price }} INR</span></div>
+                                                <div *ngFor="let single of package.child_nodes"><span style="color:#000">{{single.duration_days}} Day {{single.tution_hour}} Hour - {{ single?.price }} INR</span></div>
+                                            </td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">{{packageData?.heading}} {{packageData?.title}}</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <b>Class:</b> {{packageData?.classes}}
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <b>Board:</b> {{packageData?.boards}}
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <b>Subject:</b> {{packageData?.subjects}}
+                    </div>
+                    <div class="table-responsive widthFixed" style="padding:20px">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Duration</th>
+                                    <th>Hour</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{packageData?.duration_days}} Days</td>
+                                    <td>{{packageData?.tution_hour}} Hour</td>
+                                    <td>{{packageData?.price}} INR</td>
+                                </tr>
+                                <tr *ngFor="let single of packageData?.child_nodes">
+                                    <td>{{single?.duration_days}} Days</td>
+                                    <td>{{single?.tution_hour}} Hour</td>
+                                    <td>{{single?.price}} INR</td>
+                                </tr>
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                    
+                    
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</main>
+
+<app-footer></app-footer>

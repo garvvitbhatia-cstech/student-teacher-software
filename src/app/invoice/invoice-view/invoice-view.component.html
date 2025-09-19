@@ -1,0 +1,198 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Invoice <a id="DownloadBtn" (click)="generatePDF(invoiceData.id)" style="margin-left:10px;" class="btn btn-info">Download PDF</a></h1>
+                    
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="invoice-attribute"><strong>Carrier/Branch:</strong> {{invoiceData?.username}}</div>
+                            <div class="invoice-attribute"><strong>Invoice Date:</strong> {{invoiceData?.created_at}}</div>
+                            <div class="invoice-attribute"><strong>Due Date:</strong> {{invoiceData?.due_date}}</div>
+                            <div class="invoice-attribute"><strong>Amount Due:</strong> ${{totalDueAmt}}</div>
+                            <div class="invoice-attribute"><strong>Amount Paid:</strong> ${{totalAmt}}</div>
+                            <div class="invoice-attribute"><strong>Accounting Date:</strong> {{invoiceData?.accouting_date}}</div>
+                            <div *ngIf="invoiceData?.status == 1" class="invoice-attribute"><strong>Status:</strong> Approved</div>
+                            <div *ngIf="invoiceData?.status == 2" class="invoice-attribute"><strong>Status:</strong> Reject</div>
+                            <div *ngIf="invoiceData?.status == 3" class="invoice-attribute"><strong>Status:</strong> Pending</div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="invoice-attribute"><strong>Account Name:</strong> N/A</div>
+                            <div class="invoice-attribute"><strong>Account Number:</strong> N/A</div>
+                            <div class="invoice-attribute"><strong>Code:</strong> N/A</div>
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            <div class="invoice-attribute bigger"><strong>TOTAL AMOUNT:</strong> ${{invoiceData?.amount}}</div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="heading-page">
+                                <h1 class="heading-page">Pay Invoice</h1>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label>Payment Type</label>
+                                    <select id="invoice_type" class="form-control">
+                                        <option value="Bank Transfer">Bank Transfer</option>
+                                        <option value="Cheque Payment">Cheque Payment</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>Transaction ID/Cheque No</label>
+                                    <input id="number" class="form-control">
+                                </div>
+                                <div class="col-sm-1">
+                                    <label>Type</label>
+                                    <select id="type" class="form-control">
+                                        <option value="Payable">Payable</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>Note</label>
+                                    <input id="comment" class="form-control">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>Amount</label>
+                                    <input id="amount" class="form-control">
+                                </div>
+                                <div class="col-sm-1">
+                                    <label>Quantity</label>
+                                    <select id="quantity" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label style="display:block;"> &nbsp; </label>
+                                    <a id="payNowBtn" (click)="payNow()" style="margin-left:10px;" class="btn btn-info">Submit</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Paid Invoices</h1>
+                </div>
+                <div class="panel-body">
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Note</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                            <th>Added By</th>
+                                            <th>Date</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                            <th>Total Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         <tr *ngFor="let paidInvoice of paidInvoices">
+                                            <td>{{paidInvoice.type}}</td>
+                                            <td>{{paidInvoice.comment}}</td>
+                                            <td>{{paidInvoice.quantity}}</td>
+                                            <td>${{paidInvoice.amount}}</td>
+                                            <td>{{paidInvoice.username}}</td>
+                                            <td>{{paidInvoice.created_at}}</td>
+                                            <td><a class="edit" (click)="editPayable(paidInvoice.id)">Edit</a></td>
+                                            <td><a class="delete" (click)="deletePayable(paidInvoice.id)">Delete</a></td>
+                                            <td>${{paidInvoice.final_amount}}</td>
+                                         </tr>
+                                         <tr>
+                                            <td colspan="8"><strong>Total</strong></td>
+                                            <td><b>${{totalAmt}}</b></td>
+                                         </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div id="editPayablePopUp" class="modal submitConfirmation fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">		
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">	
+                <h4 class="modal-title">Edit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="reason_div">
+                    <label>Payment Type</label>
+                    <select id="invoice_type_edit" class="form-control">
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Cheque Payment">Cheque Payment</option>
+                    </select>
+                    <input type="hidden" id="payableID">
+                </div>
+                <div class="reason_div">
+                    <label>Transaction ID/Cheque No</label>
+                    <input id="number_edit" value="{{payableData?.number}}" class="form-control">
+                </div>
+                <div class="reason_div">
+                    <label>Type</label>
+                    <select id="type_edit" class="form-control">
+                        <option value="Payable">Payable</option>
+                    </select>
+                </div>
+                <div class="reason_div">
+                    <label>Note</label>
+                    <input id="comment_edit" value="{{payableData?.comment}}" class="form-control">
+                </div>
+                <div class="reason_div">
+                    <label>Amount</label>
+                    <input id="amount_edit" value="{{payableData?.amount}}" class="form-control">
+                </div>
+                <div class="reason_div">
+                    <label>Quantity</label>
+                    <select id="quantity_edit" class="form-control">
+                        <option [value]="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <a (click)="updatePayable();" id="updatePayableBtn" class="btn btn-yes">Update</a>
+                    <a  style="cursor: pointer;" (click)="closePopup();" class="btn btn-no">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-footer></app-footer>

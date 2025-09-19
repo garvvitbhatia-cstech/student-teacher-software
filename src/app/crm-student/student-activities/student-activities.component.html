@@ -1,0 +1,167 @@
+<app-header></app-header>>
+
+<main class="page-wrapper">
+    <app-sidebar></app-sidebar>
+
+    <section class="inner-wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Student Activities</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                          <div class="back-search">
+                                <input type="text" id="f_name" placeholder="Search By Name" class="form-control filter_input" >
+                                <input type="text" id="f_email" placeholder="Search By Email" class="form-control filter_input" >
+                                <input type="text" id="f_phone" placeholder="Search By Phone" class="form-control filter_input" >
+                                <!-- <select id="f_task_type" class="form-control filter_input">
+                                    <option value="">Type</option>
+                                    <option value="Purchased">Telecalling</option>
+                                    <option value="Document">Pending Docs</option>
+                                </select>  -->
+                                <select id="f_data_city" class="form-control filter_input">
+                                    <option value="">Apply City</option>
+                                    <option *ngFor="let franchise of franchises" value="{{franchise.id}}">{{franchise.title}}</option>
+                                  </select>
+                                <a (click)="searchData()" style="margin-right:10px;" id="searchStudentBtn" class="btn btn-info">Search</a>
+                                <a (click)="reset()" style="margin-right:10px;" class="btn btn-info">Reset</a>
+                                <a *ngIf="login_user_type == 'Admin' || export_p == 'YES'"  (click)="exportCSV()" id="exportBtn" class="btn btn-info">Export CSV</a>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="paging_bootstrap pagination">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive widthFixed">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="62px">S No.</th>
+                                            <th width="183px">Parent Name</th>
+                                            <th width="142px">Email Address</th>
+                                            <th width="142px">Mobile</th>
+                                            <th width="142px">Type</th>
+                                            <th width="142px">Followup Type</th>
+                                            <th width="142px">Date/Time</th>
+                                            <th width="142px">Description</th>
+                                            <th width="142px">Picked By</th>
+                                            <th width="142px">Status</th>
+                                            <th width="142px">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total } ; let i = index" [attr.data-index]="i" [style]="user.row_style" class="odd">
+                                            <!-- <td>{{ i+1 }}.</td> -->
+                                            <td>{{ user?.id }}</td>
+                                            <td>{{ user?.parents_name }}</td>
+                                            <td>{{ user?.email }}</td>
+                                            <td>{{ user?.phone }}</td>
+                                            <td>{{ user?.type }}</td>
+                                            <td>
+                                                <span *ngIf="user.description_type != 'Interested For VC'">{{ user?.description_type }}</span>
+                                                
+                                            </td>
+                                            <td>{{ user?.formated_date_time }}</td>
+                                            <td>{{ user?.description }}</td>
+                                            <td>{{ user?.picked_by }}</td>
+                                            <td><span *ngIf="user.task_status == 1">Open</span><span *ngIf="user.task_status == 2">Closed</span></td>
+                                        
+                                            <td>
+                                                <a (click)="getRowData(user.task_id,user.id,user.type)" *ngIf="user.task_status==1" data-toggle="modal" data-target="#basicModal" class="btn btn-info">New Activity</a>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="users.length == 0">
+                                            <td colspan="15" align="center">No Records</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right bottom-paging">
+                            <div class="paging_bootstrap pagination">
+                                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalHeading">Create Activity</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <div style="text-align:center;"><a style="font-size:30px;" id="phone_number"></a></div>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label>Name <sup>*</sup></label>
+                        <input type="text" readonly id="name" class="form-control">
+                        <input type="hidden" id="row_id">
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label>Type</label>
+                        <select id="type" class="form-control">
+                            <option value="Call">Call</option>
+                            <option value="Email">Email</option>
+                            <option value="WhatsUp">WhatsUp</option>
+                            <option value="SMS">SMS</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-sm-12 form-group">
+                        <label>Action</label>
+                        <select id="description_type" class="form-control">
+                            <option value="DNP">DNP</option>
+                            <option value="Not interested">Not interested</option>
+                            <option value="Booked Demo">Booked Demo</option>
+                            <option value="Booked package">Booked package</option>
+                            <option value="Not Satisfied with Demo">Not Satisfied with Demo</option>
+                            <option value="Call Back">Call Back</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label>Date <sup>*</sup></label>
+                        <input type="datetime-local" id="activity_date" class="form-control">
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label>Description</label>
+                        <textarea id="description" class="form-control"></textarea>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label>Status</label>
+                        <select id="status" class="form-control">
+                            <option value="1">Open</option>
+                            <option value="2">Close</option>
+                        </select>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="popCloseBtn" data-dismiss="modal">Close</button>
+              <a (click)="createActivity()" id="submitBtn" class="btn btn-primary">Submit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+</main>
+
+<app-footer></app-footer>

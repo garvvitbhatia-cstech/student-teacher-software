@@ -1,0 +1,28 @@
+.invoice-attribute{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.bigger{
+    font-size: 25px; text-align: left;
+}
+.heading-page{
+    margin: 0;
+    font-size: 24px;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.delete{
+    color: #f00; cursor: pointer;
+}
+.edit{
+    color: blue; cursor: pointer;
+}
+.reason_div{
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.reason_div label{
+    float: left;
+}
